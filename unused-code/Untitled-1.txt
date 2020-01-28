@@ -1,0 +1,35 @@
+<div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="card col-3 mx-1">
+          <div class="card-body">
+            <h5 class="card-title text-center">Languages</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Java</li>
+              <li class="list-group-item">JavaScript</li>
+              <li class="list-group-item">PHP</li>
+              <li class="list-group-item">Dart</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card col-3 mx-1">
+          <div class="card-body">
+            <h5 class="card-title text-center">Frameworks</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Android</li>
+              <li class="list-group-item">Flutter</li>
+              <li class="list-group-item">Laravel</li>
+              <li class="list-group-item">VueJs</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card col-3 mx-1">
+          <div class="card-body">
+            <h5 class="card-title text-center">Tools</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Git</li>
+              <li class="list-group-item">Postman</li>
+              <li class="list-group-item">Bash</li>
+              <li class="list-group-item">Adobe XD & Photoshop</li>
+            </ul>
+          </div>
+        </div>
