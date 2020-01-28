@@ -65,7 +65,7 @@
               <textarea class="form-control bg-dark text-white" id="message" rows="6" required></textarea>
             </div>
             <small>
-              <sup style="font-size: .8rem;" class="text-danger">*</sup> Required fildes
+              <sup style="font-size: .8rem;" class="text-danger">*</sup> Required
             </small>
             <div class="mx-auto mt-2">
               <button type="submit" class="btn btn-primary text-right">Send</button>

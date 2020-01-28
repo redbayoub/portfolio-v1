@@ -1,8 +1,9 @@
 <template>
-  <nav ref="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark">
+  <nav ref="navbar" class="navbar shadow fixed-top navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="#">
       <Logo class />Bayoub Reddah
     </a>
+    <LangChanger class="d-lg-none pr-2 ml-auto" />
     <button
       @click="toogleNavbar"
       class="navbar-toggler"
@@ -27,15 +28,32 @@
           >About</a>
         </li>
         <li class="nav-item">
-          <a data-page="skills" v-bind:class="isCurrentSection('skills')" class="nav-link" href="#skills">Skills</a>
+          <a
+            data-page="skills"
+            v-bind:class="isCurrentSection('skills')"
+            class="nav-link"
+            href="#skills"
+          >Skills</a>
         </li>
         <li class="nav-item">
-          <a data-page="work" v-bind:class="isCurrentSection('work')" class="nav-link" href="#work">Work</a>
+          <a
+            data-page="work"
+            v-bind:class="isCurrentSection('work')"
+            class="nav-link"
+            href="#work"
+          >Work</a>
         </li>
         <li class="nav-item">
-          <a data-page="contact" v-bind:class="isCurrentSection('contact')" class="nav-link" href="#contact">Contact</a>
+          <a
+            data-page="contact"
+            v-bind:class="isCurrentSection('contact')"
+            class="nav-link"
+            href="#contact"
+          >Contact</a>
         </li>
-
+        <div class="nav-item">
+          <LangChanger class=" px-1" />
+        </div>
         <li class="nav-item mt-2 mt-md-0 ml-2">
           <a name id class="btn btn-primary" href="#contact" role="button">Hire me</a>
         </li>
@@ -47,12 +65,14 @@
 <script>
 import Logo from "@/components/Logo";
 import SvgIcon from "@/components/SvgPathIcon";
+import LangChanger from "@/components/LangChanger";
 export default {
   name: "navBar",
   props: ["currentSection"],
   components: {
     Logo,
-    SvgIcon
+    SvgIcon,
+    LangChanger
   },
   data() {
     return {
@@ -66,12 +86,10 @@ export default {
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
   },
-  computed: {
-    
-  },
+  computed: {},
 
   methods: {
-    isCurrentSection:function(section) {
+    isCurrentSection: function(section) {
       return {
         active: this.currentSection == section
       };
@@ -127,12 +145,11 @@ export default {
   fill: #007bff;
 }
 
-
-/* Small devices sm (tablets, 768px and up) */
+/* large devices lg (desktop, 1024px and up) */
 @media (min-width: 1024px) {
-  .navbar .active{
-  border-bottom: 2px solid #007bff;
-  border-radius: 5px;
-}
+  .navbar .active {
+    border-bottom: 2px solid #007bff;
+    border-radius: 5px;
+  }
 }
 </style>

@@ -55,6 +55,20 @@ export default {
   /*  border-radius: 0px; */
   border: none;
 }
+
+/* xs sm md devices (desktop, 1024px and up) */
+@media (max-width: 1023px) {
+  .work-card {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+}
+/* large devices lg (desktop, 1024px and up) */
+@media (min-width: 1024px) {
+  .work-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+}
+
 .work-card img {
   border-radius: 0px;
 }

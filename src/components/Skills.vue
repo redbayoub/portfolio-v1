@@ -1,9 +1,9 @@
 <template>
-  <section class="skills "> 
+  <section class="skills">
     <h1 class="text-center display-4">Skills</h1>
     <div class="divder my-4"></div>
     <div class="container-fluid d-flex justify-content-center">
-      <div class="card-deck ">
+      <div class="card-deck">
         <div class="card skill-card">
           <div class="card-body">
             <h5 class="card-title text-center">Languages</h5>
@@ -47,12 +47,22 @@ export default {};
 </script>
 
 <style>
-
-.skill-card{
+.skill-card {
   width: 20rem;
- 
-
 }
+/* xs sm md devices lg (desktop, 1024px and up) */
+@media (max-width: 1023px) {
+  .skill-card {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+}
+/* large devices lg (desktop, 1024px and up) */
+@media (min-width: 1024px) {
+  .skill-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+}
+
 .list {
   list-style: none;
   margin: 0;
