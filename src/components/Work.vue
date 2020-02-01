@@ -1,38 +1,38 @@
 <template>
   <section class="container work">
-    <h1 class="text-center display-4">Work</h1>
+    <h1 class="text-center capitalize display-4 " :class="isRtl">{{$t('work.label')}}</h1>
     <div class="divder my-4"></div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center no-gutters capitalize " :class="isRtl" >
       <button
         type="button"
-        class="project-type-btn btn"
+        class="project-type-btn btn capitalize"
         v-bind:class="getBtnColorClass('all')"
         @click="onProjectFilterClicked('all')"
-      >All</button>
+      >{{$t('work.all')}}</button>
       <button
         type="button"
-        class="project-type-btn btn"
+        class="project-type-btn btn capitalize"
         v-bind:class="getBtnColorClass('mob')"
         @click="onProjectFilterClicked('mob')"
-      >Mobile</button>
+      >{{$t('work.mobile')}}</button>
       <button
         type="button"
-        class="project-type-btn btn"
+        class="project-type-btn btn capitalize"
         v-bind:class="getBtnColorClass('desk')"
         @click="onProjectFilterClicked('desk')"
-      >Desktop</button>
+      >{{$t('work.desktop')}}</button>
       <button
         type="button"
-        class="project-type-btn btn"
+        class="project-type-btn btn capitalize"
         v-bind:class="getBtnColorClass('web')"
         @click="onProjectFilterClicked('web')"
-      >Web</button>
+      >{{$t('work.web')}}</button>
     </div>
     <!--  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"> -->
     <!-- class="col-md-4  col-sm-6 col-6 col-offset " -->
-    <transition-group name="list" class="row">
+    <transition-group name="list" class="row no-gutters">
       <WorkCard
-        class="col-md-4 col-sm-6 mb-4 "
+        class="col-md-4 col-sm-6 pb-4 mx-3 mx-md-0 p-md-2  "
         v-for="project in projects"
         v-bind:key="project.id"
         v-bind:id="project.id"
@@ -112,6 +112,11 @@ export default {
     };
   },
   methods: {
+    isRtl(){
+      return {
+        'rtl': this.$i18n.locale=="ar",
+      };
+    },
     onProjectFilterClicked(selected_project_type) {
       this.project_type = selected_project_type;
       if (selected_project_type == "all") {
@@ -145,7 +150,7 @@ export default {
 <style>
 .project-type-btn {
   border: none;
-  border-radius: 0px;
+  border-radius: 0px !important;
   margin: 0 10px 10px;
   width: 5rem;
 }

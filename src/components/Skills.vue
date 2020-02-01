@@ -1,12 +1,12 @@
 <template>
-  <section class="skills">
-    <h1 class="text-center display-4">Skills</h1>
+  <section class="skills capitalize">
+    <h1 class="text-center display-4">{{$t('skills.label')}}</h1>
     <div class="divder my-4"></div>
     <div class="container-fluid d-flex justify-content-center">
       <div class="card-deck">
-        <div class="card skill-card">
+        <div class="card  skill-card">
           <div class="card-body">
-            <h5 class="card-title text-center">Languages</h5>
+            <h5 class="card-title text-center">{{$t('skills.languages')}}</h5>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Java</li>
               <li class="list-group-item">JavaScript</li>
@@ -17,7 +17,7 @@
         </div>
         <div class="card skill-card">
           <div class="card-body">
-            <h5 class="card-title text-center">Frameworks</h5>
+            <h5 class="card-title text-center">{{$t('skills.frameworks')}}</h5>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Android</li>
               <li class="list-group-item">Flutter</li>
@@ -28,7 +28,7 @@
         </div>
         <div class="card skill-card">
           <div class="card-body">
-            <h5 class="card-title text-center">Tools</h5>
+            <h5 class="card-title text-center">{{$t('skills.tools')}}</h5>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Git</li>
               <li class="list-group-item">Postman</li>
@@ -49,6 +49,7 @@ export default {};
 <style>
 .skill-card {
   width: 20rem;
+ /*  padding: 5px; */
 }
 /* xs sm md devices lg (desktop, 1024px and up) */
 @media (max-width: 1023px) {

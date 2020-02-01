@@ -1,3 +1,38 @@
 {
-  "message": "hello i18n !!"
+	"about": {
+		"label": "about",
+		"title": "about me"
+	},
+	"contact": {
+		"form": {
+			"email": "email address",
+			"enter": "enter",
+			"message": "message",
+			"name": "name",
+			"required": "required",
+			"send": "send"
+		},
+		"label": "contact",
+		"title": "contact me"
+	},
+	"copyrights": "designed and developed by",
+	"full-name": "Bayoub Reddah",
+	"hero": {
+		"lead": "various experience in mobile and full-stack web development",
+		"title": "Software Developer"
+	},
+	"hire-me": "Hire me",
+	"skills": {
+		"frameworks": "frameworks",
+		"label": "skills",
+		"languages": "languages",
+		"tools": "tools"
+	},
+	"work": {
+		"all": "all",
+		"desktop": "desktop",
+		"label": "work",
+		"mobile": "mobile",
+		"web": "web"
+	}
 }

@@ -1,6 +1,6 @@
 <template>
   
-  <SvgIcon name="portfolioLogo"  fill="#ffffff" width="40" height="40" />
+  <SvgIcon name="portfolioLogo"  fill="#ffffff" width="30" height="30" />
 </template>
 <!-- <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 64 100">
     <title>bayoub reddah protfolio logo</title>

@@ -1,8 +1,8 @@
 <template>
-  <section class="container">
-    <h1 class="text-center display-4">About Me</h1>
+  <section class="container capitalize">
+    <h1 class="text-center display-4">{{$t('about.title')}}</h1>
     <div class="divder my-4"></div>
-    
+  
   </section>
 </template>
 

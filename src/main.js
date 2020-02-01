@@ -1,10 +1,20 @@
-import Vue from 'vue'
-import App from './App.vue'
-import i18n from './i18n'
-
-Vue.config.productionTip = false
+import Vue from "vue";
+import App from "./App.vue";
+import i18n from "./i18n";
+/* import "bootstrap"; */
+/* import "bootstrap-v4-rtl"; */
+/* 
+import "bootstrap/dist/css/bootstrap.min.css"; */
+/* import "bootstrap-v4-rtl";
+import "bootstrap-v4-rtl/dist/css/bootstrap-rtl.min.css"; */
+import router from './router'
+Vue.config.productionTip = false;
 
 new Vue({
   i18n,
-  render: function (h) { return h(App) }
-}).$mount('#app')
+  router,
+
+  render: function(h) {
+    return h(App);
+  }
+}).$mount("#app");

@@ -1,14 +1,14 @@
 <template>
-  <div >
-    <NavBar id="navbar" :currentSection="currentSection" />
+  <div>
+    <NavBar id="navbar" :currentSection="currentSection" class="rtl" />
     <header>
-      <Hero id="hero" ref="hero"  />
+      <Hero id="hero" ref="hero" class="rtl" />
     </header>
-    <AboutMe class id="about" ref="about" />
+    <AboutMe id="about" ref="about" class="rtl" />
     <Skills class="bg-light" id="skills" ref="skills" />
-    <Work id="work" ref="work" />
-    <Contact id="contact" ref="contact"  />
-    <MyFooter />
+    <Work id="work" ref="work"  />
+    <Contact id="contact" ref="contact" class="rtl" />
+    <MyFooter class="rtl" />
   </div>
 </template>
 
@@ -54,20 +54,28 @@ export default {
       self.observer.observe(ref.$el);
     });
   },
-  
+  methods: {
+    isRtl: function() {
+      return {
+        rtl: this.$i18n.locale == "ar"
+      };
+    }
+  }
 };
 </script>
 
 <style>
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css");
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto&display=swap');
+@import url("../static/css/bootstrap-rtl.min.css");
+
+
 html {
   scroll-behavior: smooth;
 }
 html,
 body {
-  font-family:Montserrat, Roboto, Arial, sans-serif;
-  direction: ltr;
+  font-family:Helvetica,Arial, sans-serif;
+  
+  direction: rtl;
 }
 
 .divder {

@@ -1,23 +1,24 @@
 <template>
-  <nav ref="navbar" class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark capitalize">
+  <nav ref="navbar" class="navbar fixed-top navbar-expand-sm navbar-dark capitalize">
     <a class="navbar-brand m-0" href="#">
       <Logo class />
       {{$t('full-name')}}
     </a>
     <LangChanger class="d-sm-none pr-2 ml-auto" />
     <button
-      @click.stop="toggleNavbar()"
+      @click.stop="toogleNavbar"
       class="navbar-toggler p-0 border-0 m-2"
       type="button"
+      data-toggle="collapse"
       data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent"
-      :aria-expanded="{isToogled}"
+      aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse" :class="collapseClasses" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a
@@ -85,14 +86,20 @@ export default {
   data() {
     return {
       isToogled: false,
-      collapseClasses: {
-        "navbar-collapse": true,
-        collapse: true,
-        collapsing: false,
-        show: false //initial state
-      }
+      scrollPassedThershold: false
     };
   },
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
+
+  mounted() {
+    this.handleScroll();
+  },
+  beforeUpdate() {},
 
   methods: {
     isCurrentSection: function(section) {
@@ -100,27 +107,25 @@ export default {
         active: this.currentSection == section
       };
     },
-    toggleNavbar() {
-      let curr = this.collapseClasses;
-      this.collapseClasses = {
-        ...curr,
-        ...{
-          collapsing: true,
-          collapse: false,
-          show: false
-        }
-      };
+    handleScroll(e) {
+      // Any code to be executed when the window is scrolled
+      if (window.scrollY > 100) {
+        this.scrollPassedThershold = true;
+        this.$refs["navbar"].classList.add("nav-bg");
+      } else {
+        this.scrollPassedThershold = false;
+        if (!this.isToogled) this.$refs["navbar"].classList.remove("nav-bg");
+      }
+    },
+    toogleNavbar() {
       this.isToogled = !this.isToogled;
-      setTimeout(() => {
-        this.collapseClasses = {
-          ...curr,
-          ...{
-            collapsing: false,
-            collapse: true,
-            show: !curr.show
-          }
-        };
-      }, 10);
+      console.log("toogleNavbar");
+      if (this.isToogled) {
+        this.$refs["navbar"].classList.add("nav-bg");
+      } else {
+        if (!this.scrollPassedThershold)
+          this.$refs["navbar"].classList.remove("nav-bg");
+      }
     }
   }
 };

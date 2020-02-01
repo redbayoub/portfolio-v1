@@ -16,20 +16,27 @@
         </div>
         <div class="container no-gutters mt-auto">
           <div class="row">
-            <button
-              type="button"
+            <a
+              name
+              id
               class="btn border-light card-btn col mx-1"
-              v-if="link!=null && link.length!=0"
+              href="#"
+              target="_blank"
+              role="button"
+               v-if="link!=null && link.length!=0"
             >
-              <SvgIcon name="link"  fill="#ffffff"  /> 
-            </button>
-            <button
-              type="button"
+              <SvgIcon name="link" fill="#ffffff" />
+            </a><a
+              name
+              id
               class="btn border-light card-btn col mx-1"
-              v-if="source!=null && source.length!=0"
+              href="#"
+              target="_blank"
+              role="button"
+                v-if="source!=null && source.length!=0"
             >
-              <SvgIcon name="sourceCode"  fill="#ffffff" />
-            </button>
+              <SvgIcon name="sourceCode" fill="#ffffff" />
+            </a>
           </div>
         </div>
       </div>
@@ -42,7 +49,7 @@ import SvgIcon from "@/components/SvgPathIcon";
 export default {
   name: "workCard",
   props: ["title", "id", "subtitle", "body", "stacks", "link", "source", "img"],
-  components:{
+  components: {
     SvgIcon
   }
 };
