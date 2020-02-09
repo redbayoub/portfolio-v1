@@ -1,71 +1,56 @@
 <template>
-  <nav ref="navbar" class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark capitalize">
-    <a class="navbar-brand m-0" href="#">
-      <Logo class />
-      {{$t('full-name')}}
-    </a>
-    <LangChanger class="d-sm-none pr-2 ml-auto" />
-    <button
-      @click.stop="toggleNavbar()"
-      class="navbar-toggler p-0 border-0 m-2"
-      type="button"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      :aria-expanded="{isToogled}"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <nav
+    ref="navbar"
+    dir="ltr"
+    class="navbar fixed-top navbar-expand-sm  navbar-dark bg-blue  capitalize"
+  >
+    <div class="container">
+      <a class="navbar-brand m-0" href="#">
+        <Logo class />
+        {{$t('full-name')}}
+      </a>
+      <button
+        @click.stop="toggleNavbar($event)"
+        class="navbar-toggler bt-menu-trigger border-0"
+        :class="bindMenuTogglerAddClasses"
+        type="button"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        :aria-expanded="isToogled"
+        aria-label="Toggle navigation"
+      >
+        <!--   <span class="navbar-toggler-icon"></span> -->
+        <span></span>
+      </button>
 
-    <div class="collapse" :class="collapseClasses" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a
-            data-page="about"
-            class="nav-link"
-            v-bind:class="isCurrentSection('about')"
-            href="#about"
-          >{{$t('about.label')}}</a>
-        </li>
-        <li class="nav-item">
-          <a
-            data-page="skills"
-            v-bind:class="isCurrentSection('skills')"
-            class="nav-link"
-            href="#skills"
-          >{{$t('skills.label')}}</a>
-        </li>
-        <li class="nav-item">
-          <a
-            data-page="work"
-            v-bind:class="isCurrentSection('work')"
-            class="nav-link"
-            href="#work"
-          >{{$t('work.label')}}</a>
-        </li>
-        <li class="nav-item">
-          <a
-            data-page="contact"
-            v-bind:class="isCurrentSection('contact')"
-            class="nav-link"
-            href="#contact"
-          >{{$t('contact.label')}}</a>
-        </li>
-        <div class="nav-item d-none d-sm-block">
-          <LangChanger class="mr-2" style="padding:2px;" />
-        </div>
-        <li class="nav-item">
-          <!-- mt-2 mt-md-0 -->
-          <a
-            name
-            id
-            class="btn btn-primary"
-            style="margin:1px;"
-            href="#contact"
-            role="button"
-          >{{ $t('hire-me') }}</a>
-        </li>
-      </ul>
+      <div class="collapse" :class="collapseClasses" id="navbarSupportedContent">
+        <ul class="navbar-nav" :class="bindNavNavbarClasses">
+          <li class="nav-item menu-link">
+            <a data-page="about" class="nav-link" href="#about">{{$t('about.label')}}</a>
+          </li>
+          <li class="nav-item menu-link">
+            <a data-page="skills" class="nav-link" href="#skills">{{$t('skills.label')}}</a>
+          </li>
+          <li class="nav-item menu-link">
+            <a data-page="work" class="nav-link" href="#work">{{$t('work.label')}}</a>
+          </li>
+          <li class="nav-item menu-link">
+            <a data-page="contact" class="nav-link" href="#contact">{{$t('contact.label')}}</a>
+          </li>
+
+          <LangChanger class="nav-item mr-2" style="padding:2px;" id="langChanger"/>
+          <li class="nav-item">
+            <a
+              name
+              id
+              class="btn btn-outline-light   "
+              style="margin:1px;"
+              href="#contact"
+              role="button"
+            >{{$t('contact.title')}}</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </template>
@@ -76,11 +61,34 @@ import SvgIcon from "@/components/SvgPathIcon";
 import LangChanger from "@/components/LangChanger";
 export default {
   name: "navBar",
-  props: ["currentSection"],
   components: {
     Logo,
     SvgIcon,
     LangChanger
+  },
+  computed: {
+    bindMenuTogglerAddClasses: function() {
+      return {
+        /* "c-rtl": this.$i18n.locale === "ar", */
+        /* "rtl":this.is_mobile && this.$i18n.locale === "ar", */
+        "bt-menu-open": this.isToogled
+      };
+    },
+    bindNavNavbarClasses: function() {
+      return {
+        "ml-auto": !this.isRtl(),
+        "mr-auto": this.isRtl(),
+        "rtl": this.is_mobile && this.isRtl(),
+        /* "c-rtl": this.$i18n.locale === "ar", */
+        /* "rtl":this.is_mobile && this.$i18n.locale === "ar", */
+        "bt-menu-open": this.isToogled
+      };
+    },
+    is_mobile() {
+      // media query sm 480px
+      const isMobile = window.matchMedia("(max-width: 480px)");
+      return isMobile.matches ? true : false;
+    }
   },
   data() {
     return {
@@ -93,14 +101,14 @@ export default {
       }
     };
   },
+  mounted() {},
 
   methods: {
-    isCurrentSection: function(section) {
-      return {
-        active: this.currentSection == section
-      };
+    isRtl() {
+      return this.$i18n.locale === "ar";
     },
-    toggleNavbar() {
+    toggleNavbar(e) {
+      e.stopPropagation(); // this will stop propagation of this event to upper level
       let curr = this.collapseClasses;
       this.collapseClasses = {
         ...curr,
@@ -121,6 +129,12 @@ export default {
           }
         };
       }, 10);
+
+      if (this.isToogled) {
+        window.addEventListener("click", this.toggleNavbar);
+      } else {
+        window.removeEventListener("click", this.toggleNavbar);
+      }
     }
   }
 };
@@ -142,10 +156,102 @@ export default {
   border: 0px solid transparent;
   padding: 0 10px 0 5px;
 } */
+/* Hambergur for ltr lang */
+.bt-menu-trigger {
+  font-size: 30px;
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  width: 1.5em;
+  height: 2em;
+  cursor: pointer;
+}
+.bt-menu-trigger:focus {
+  outline: none;
+}
+
+.bt-menu-trigger span {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 0.15em;
+  margin-top: -0.1em;
+  background-color: rgba(255,255,255,.9);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+
+.bt-menu-trigger span:after,
+.bt-menu-trigger span:before {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:  rgba(255,255,255,.9);
+  content: "";
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.bt-menu-trigger span:before {
+  -webkit-transform: translateY(-0.5em);
+  transform: translateY(-0.5em);
+}
+
+.bt-menu-trigger span:after {
+  -webkit-transform: translateY(0.5em);
+  transform: translateY(0.5em);
+}
+
+.bt-menu-trigger.bt-menu-open span:before {
+  -webkit-transform: translateY(-0.36em) translateX(0.65em) rotate(45deg)
+    scaleX(0.6);
+  transform: translateY(-0.30em) translateX(0.45em) rotate(45deg) scaleX(0.6);
+}
+
+.bt-menu-trigger.bt-menu-open span:after {
+  -webkit-transform: translateY(0.36em) translateX(0.65em) rotate(-45deg)
+    scaleX(0.6);
+  transform: translateY(0.30em) translateX(0.45em) rotate(-45deg) scaleX(0.6);
+}
+/* Hambergur for rtl lang */
+.c-rtl.bt-menu-trigger span {
+  left: auto;
+  right: 0;
+}
+
+.c-rtl.bt-menu-trigger span:after,
+.c-rtl.bt-menu-trigger span:before {
+  left: auto;
+  right: 0;
+}
+
+.c-rtl.bt-menu-trigger.bt-menu-open span:before {
+  -webkit-transform: translateY(-0.36em) translateX(-0.65em) rotate(-45deg)
+    scaleX(0.6);
+  transform: translateY(-0.35em) translateX(-0.65em) rotate(-45deg) scaleX(0.6);
+}
+
+.c-rtl.bt-menu-trigger.bt-menu-open span:after {
+  -webkit-transform: translateY(0.36em) translateX(-0.65em) rotate(45deg)
+    scaleX(0.6);
+  transform: translateY(0.35em) translateX(-0.65em) rotate(45deg) scaleX(0.6);
+}
+
+/* overwrite wierd margin on nav in mobile when using bootstrap rtl */
 .rtl .navbar-nav .nav-item + .nav-item,
 [dir="rtl"] .navbar-nav .nav-item + .nav-item {
   margin-right: 0 !important;
 }
+
 .nav-bg {
   background-color: rgba(51, 04, 65, 0.7) !important;
 }
@@ -161,8 +267,8 @@ export default {
 /* large devices lg (desktop, 1024px and up) */
 @media (min-width: 1024px) {
   .navbar .active {
-    border-bottom: 2px solid #007bff;
-    border-radius: 5px;
+    border-bottom: 2px solid #2D83CF  ;
+
   }
 }
 </style>

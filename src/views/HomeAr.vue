@@ -1,12 +1,12 @@
 <template>
   <div>
-    <NavBar id="navbar" :currentSection="currentSection" class="rtl" />
+    <NavBar id="navbar" :currentSection="currentSection"  />
     <header>
       <Hero id="hero" ref="hero" class="rtl" />
     </header>
     <AboutMe id="about" ref="about" class="rtl" />
     <Skills class="bg-light" id="skills" ref="skills" />
-    <Work id="work" ref="work"  />
+    <Work id="work" ref="work" />
     <Contact id="contact" ref="contact" class="rtl" />
     <MyFooter class="rtl" />
   </div>
@@ -21,9 +21,32 @@ import Skills from "@/components/Skills";
 import Work from "@/components/Work";
 import Contact from "@/components/Contact";
 import MyFooter from "@/components/MyFooter";
+import scrollspy from "@/js/scrollspy.js";
 
 export default {
   name: "home",
+  metaInfo: {
+    title: "بايوب رداح - الصفحة الشخصية",
+    // override the parent template and just use the above title only
+    titleTemplate: null,
+    htmlAttrs: {
+      lang: "ar",
+      dir: "rtl",
+      amp: false
+    },
+    meta: [
+      {
+        name: "description",
+        content:
+          "بايوب رداح مطور خبير في تصميم و برمجة تطبقات الموبايل و مواقع الويب و  برامج الحواسيب"
+      },
+      {
+        name: "keywords",
+        content:
+          "جافا , مواقع , php , java , javascript , php , flutter , andorid , html , ويب , تطبيقات , تطوير , جافاسكريبت , أندرويد , تصميم , فلاتر , برمجة , مطور , مبرمج"
+      }
+    ]
+  },
   components: {
     NavBar,
     Hero,
@@ -40,19 +63,9 @@ export default {
     };
   },
   mounted() {
-    const options = {
-      threshold: 0.7
-    };
-    const self = this;
-    var navCheck = function([entry]) {
-      if (entry && entry.isIntersecting) {
-        self.currentSection = entry.target.id;
-      }
-    };
-    self.observer = new IntersectionObserver(navCheck, options);
-    Object.values(self.$refs).forEach(ref => {
-      self.observer.observe(ref.$el);
-    });
+    const sections = document.querySelectorAll(".scrollable");
+    const menu_links = document.querySelectorAll(".navbar .nav-item");
+    scrollspy(window, menu_links, sections);
   },
   methods: {
     isRtl: function() {
@@ -67,14 +80,13 @@ export default {
 <style>
 @import url("../static/css/bootstrap-rtl.min.css");
 
-
 html {
   scroll-behavior: smooth;
 }
 html,
 body {
-  font-family:Helvetica,Arial, sans-serif;
-  
+  font-family: Helvetica, Arial, sans-serif;
+
   direction: rtl;
 }
 
@@ -122,7 +134,9 @@ header {
 
 /* Small devices sm (tablets, 768px and up) */
 @media (min-width: 768px) {
-  #skills {
+  #skills,
+  #work,
+  #contact {
     min-height: 100vh;
   }
 }

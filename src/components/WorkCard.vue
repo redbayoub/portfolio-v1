@@ -23,17 +23,18 @@
               href="#"
               target="_blank"
               role="button"
-               v-if="link!=null && link.length!=0"
+              v-if="link!=null && link.length!=0"
             >
               <SvgIcon name="link" fill="#ffffff" />
-            </a><a
+            </a>
+            <a
               name
               id
               class="btn border-light card-btn col mx-1"
               href="#"
               target="_blank"
               role="button"
-                v-if="source!=null && source.length!=0"
+              v-if="source!=null && source.length!=0"
             >
               <SvgIcon name="sourceCode" fill="#ffffff" />
             </a>
@@ -83,14 +84,23 @@ export default {
   background-color: rgba(0, 0, 0, 0.8);
   opacity: 1;
 }
+.card-img-overlay:hover a {
+  transform: translate(0%);
+  transition-delay: 100ms;
+}
 .card-img-overlay {
   opacity: 0;
   cursor: pointer;
 }
-.overlay {
+.card-img-overlay a {
+  cursor: pointer;
+  transform: translate(100000000%); /* only to make out of the frame */
+  transition: transform 0s;
+}
+/* .overlay {
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 1;
-}
+} */
 .card-btn {
   margin: auto 0 0;
 }

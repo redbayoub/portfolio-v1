@@ -1,8 +1,8 @@
 <template>
   <section class="container work">
-    <h1 class="text-center capitalize display-4 " :class="isRtl">{{$t('work.label')}}</h1>
+    <h1 class="text-center capitalize display-4" :class="isRtl">{{$t('work.label')}}</h1>
     <div class="divder my-4"></div>
-    <div class="row justify-content-center no-gutters capitalize " :class="isRtl" >
+    <div class="row justify-content-center no-gutters capitalize" :class="isRtl">
       <button
         type="button"
         class="project-type-btn btn capitalize"
@@ -30,9 +30,12 @@
     </div>
     <!--  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"> -->
     <!-- class="col-md-4  col-sm-6 col-6 col-offset " -->
-    <transition-group name="list" class="row no-gutters">
+
+    <!-- row no-gutters -->
+    <!--  class="col-md-4 col-sm-6 pb-4 mx-3 mx-md-0 p-md-2  " -->
+    <transition-group name="list" class="card-row" :class="isCRtl">
       <WorkCard
-        class="col-md-4 col-sm-6 pb-4 mx-3 mx-md-0 p-md-2  "
+        class="card-col"
         v-for="project in projects"
         v-bind:key="project.id"
         v-bind:id="project.id"
@@ -45,7 +48,6 @@
         v-bind:stacks="project.stacks"
       />
     </transition-group>
-    <!--  </div> -->
   </section>
 </template>
 
@@ -56,8 +58,8 @@ export default {
   components: {
     WorkCard
   },
-  created(){
-    this.projects=this.orginal_projects.slice();
+  created() {
+    this.projects = this.orginal_projects.slice();
   },
   data() {
     return {
@@ -108,15 +110,22 @@ export default {
           img: "https://via.placeholder.com/200"
         }
       ],
-      projects: null,
+      projects: null
     };
   },
-  methods: {
-    isRtl(){
+  computed: {
+    isRtl: function() {
       return {
-        'rtl': this.$i18n.locale=="ar",
+        rtl: this.$i18n.locale == "ar"
       };
-    },
+    }, // added this to make diff btw rtl ( bootstrap rtl ) and custom rtl
+    isCRtl: function() {
+      return {
+        "c-rtl": this.$i18n.locale == "ar"
+      };
+    }
+  },
+  methods: {
     onProjectFilterClicked(selected_project_type) {
       this.project_type = selected_project_type;
       if (selected_project_type == "all") {
@@ -152,7 +161,7 @@ export default {
   border: none;
   border-radius: 0px !important;
   margin: 0 10px 10px;
-  width: 5rem;
+  width: 6rem;
 }
 .list-enter-active,
 .list-leave-active {
@@ -162,4 +171,59 @@ export default {
   opacity: 0;
   transform: translateY(30px);
 }
+
+.card-row {
+  margin: 8px -16px;
+}
+
+/* Add padding BETWEEN each column (if you want) */
+.card-row,
+.card-row > .card-col {
+  padding: 8px;
+}
+
+/* Create four equal columns that floats next to each other */
+.card-col {
+  float: left;
+  width: 33.33%;
+}
+
+.c-rtl .card-col {
+  float: right;
+}
+
+/* Clear floats after rows */
+.card-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 900px) {
+  .card-col {
+    width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .card-row {
+    margin: 0;
+  }
+
+  .card-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .card-col {
+    width: 100%;
+  }
+}
+
+/* 
+.work-card{
+  width: 300px;;
+} */
 </style>

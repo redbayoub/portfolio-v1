@@ -1,28 +1,28 @@
 <template>
-  <section class="container-fluid bg-dark text-light capitalize" >
+  <section class="container-fluid bg-blue-dark text-light capitalize" >
     <div class="container">
       <div class="text-center mb-4">
-        <h1 class="display-4">{{$t('contact.title')}}</h1>
+        <h1 class="display-4 ">{{$t('contact.title')}}</h1>
         <div class="divder my-4 bg-light"></div>
         <a
           name
           id
-          class="btn btn-light mx-2"
+          class="btn bg-blue-light mx-2"
           href="https://github.com/redayoub47"
           target="_blank"
           role="button"
         >
-          <SvgIcon name="githubLogo" />
+          <SvgIcon name="githubLogo" fill="#ffffff" />
         </a>
         <a
           name
           id
-          class="btn btn-light mx-2"
+          class="btn  bg-blue-light mx-2"
           href="https://www.linkedin.com/in/bayoub-reddah/"
           target="_blank"
           role="button"
         >
-          <SvgIcon name="linkdinLogo" />
+          <SvgIcon name="linkdinLogo" fill="#ffffff" />
         </a>
       </div>
       <div class="row">
@@ -35,10 +35,11 @@
               </label>
               <input
                 type="text"
-                class="form-control bg-dark text-white"
+                class="form-control custom-form-input text-white"
                 id="name"
+                autocomplete="off"
                 aria-describedby="emailHelp"
-                placeholder="Enter name"
+                :placeholder="$t('contact.form.enter')+' '+$t('contact.form.name')"
                 required
               />
             </div>
@@ -49,10 +50,10 @@
               </label>
               <input
                 type="email"
-                class="form-control bg-dark text-white"
+                class="form-control custom-form-input text-white"
                 id="email"
                 aria-describedby="emailHelp"
-                placeholder="Enter email"
+                :placeholder="$t('contact.form.enter')+' '+$t('contact.form.email')"
                 required
               />
             </div>
@@ -61,7 +62,7 @@
                 {{$t('contact.form.message')}}
                 <sup style="font-size: .8rem;" class="text-danger">*</sup>
               </label>
-              <textarea class="form-control bg-dark text-white" id="message" rows="6" required></textarea>
+              <textarea class="form-control custom-form-input text-white" autocomplete="off" id="message" rows="6" required></textarea>
             </div>
             <small>
               <sup style="font-size: .8rem;" class="text-danger">*</sup>
@@ -70,7 +71,7 @@
             <div class="mx-auto mt-2">
               <button
                 type="submit"
-                class="btn btn-primary text-right capitalize"
+                class="btn btn-primary bg-blue-light border-0 text-right capitalize"
               >{{$t('contact.form.send')}}</button>
             </div>
           </form>
@@ -96,7 +97,13 @@ export default {
 
 <style>
 .custom-form-input {
-  background-color: #343a40;
+  background-color: rgb(0, 52, 97) !important;
   color: white;
+  border-color: #2D83CF !important;
 }
+/*  ::placeholder { 
+  color: #2D83CF;
+  opacity: 1;
+} */
+
 </style>

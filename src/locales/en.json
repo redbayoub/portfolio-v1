@@ -13,15 +13,18 @@
 			"send": "send"
 		},
 		"label": "contact",
-		"title": "contact me"
+		"title": "get in touch"
 	},
 	"copyrights": "designed and developed by",
 	"full-name": "Bayoub Reddah",
 	"hero": {
 		"lead": "various experience in mobile and full-stack web development",
-		"title": "Software Developer"
+		"title": "Software Developer",
+		"view-my": "view my"
 	},
 	"hire-me": "Hire me",
+	"langs": "languages",
+	"resume": "Resume",
 	"skills": {
 		"frameworks": "frameworks",
 		"label": "skills",

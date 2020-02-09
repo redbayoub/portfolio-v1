@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-dark text-white p-2 capitalize ">
+  <footer class="bg-blue-dark text-white p-2 capitalize ">
     <div class="d-flex">
       <div class="align-self-center mx-auto">
           {{$t('copyrights')}}

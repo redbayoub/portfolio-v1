@@ -7,7 +7,7 @@
     :style="{fill:fill}"
   >
     <title>{{this.icons[this.name].title}}</title>
-    <path :d="path" />
+    <path :key="index" v-for="(path,index) in paths" :d="path" />
   </svg>
 </template>
 
@@ -38,8 +38,8 @@ export default {
     }
   },
   computed: {
-    path() {
-      return this.icons[this.name].path;
+    paths() {
+      return this.icons[this.name].paths;
     }
   }
 };

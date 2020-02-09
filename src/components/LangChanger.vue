@@ -1,38 +1,35 @@
 <template>
-  <div class="dropdown" v-bind:class="{'show':isOpen}" >
-    <button
-      class="btn custom-dropdown bg-transparent  dropdown-toggle"
-      type="button"
-      id="dropdownMenuButton"
-   
-      @click="toogleDropedown"
-    
+  <div class="dropdown" v-bind:class="bindDropdownClasses">
+    <a
+      class="nav-link custom-dropdown dropdown-toggle"
+      href="#"
+      id="langsBtn"
+      role="button"
       aria-haspopup="true"
-      
-      v-bind:aria-expanded="{isOpen}"
-    ><!--  data-toggle="dropdown" -->
-      <SvgIcon
-        class="lang-icon"
-        name="changeLangIcon"
-        width="18"
-        hieght="18"
-        fill="rgba(255, 255, 255, 0.5)"
-      />
-      <span class="lang-name">  {{currr_lang_name}}</span>
-    </button>
-    <div class="dropdown-menu custom-dropdown-menu bg-purple" v-bind:class="{'show':isOpen}"  aria-labelledby="dropdownMenuButton">
-      <router-link class="dropdown-item c-dropdown-item" v-bind:class="isActive('en')" to="/en/">English</router-link> 
-      <router-link class="dropdown-item c-dropdown-item" v-bind:class="isActive('ar')" to="/ar/">العربية</router-link> 
-      <!-- <a
-        class="dropdown-item"
-        @click="changeLang('en',$event)"
+      @click="toogleDropedown"
+      v-bind:aria-expanded="isOpen"
+    >
+      <span class="lang-name capitalize">{{$t('langs')}}</span>
+    </a>
+    <div
+      class="dropdown-menu custom-dropdown-menu bg-dark"
+      v-bind:class="{'show':isOpen}"
+      id="langsMenu"
+      aria-labelledby="langsBtn"
+    >
+      <router-link
+        class="dropdown-item c-dropdown-item"
         v-bind:class="isActive('en')"
-      >English</a>
-      <a
-        class="dropdown-item"
-        @click="changeLang('ar',$event)"
+        to="/en/"
+        replace
+      >English</router-link>
+      <router-link
+        class="dropdown-item c-dropdown-item"
         v-bind:class="isActive('ar')"
-      >العربية</a> -->
+        to="/ar/"
+        replace
+        dir="rtl"
+      >العربية</router-link>
     </div>
   </div>
 </template>
@@ -47,41 +44,46 @@ export default {
   data() {
     return {
       curr_lang: "",
-      isOpen:false,
+      isOpen: false
     };
   },
   created() {
     this.curr_lang = this.$i18n.locale;
   },
   computed: {
-    currr_lang_name: function() {
-      if (this.curr_lang == "en") {
-        return "En";
-      } else {
-        return "ع";
-      }
+    bindDropdownClasses: function() {
+      return {
+        rtl: this.isRtl(),
+        show: this.isOpen
+      };
     }
   },
+
   methods: {
-    
+    isRtl() {
+      return this.$i18n.locale === "ar";
+    },
     isActive(lang) {
       return {
-        active: this.curr_lang == lang
+        selected: this.curr_lang == lang
       };
     },
-    toogleDropedown( e) {
+    toogleDropedown(e) {
       e.preventDefault();
-      this.isOpen=!this.isOpen;
+      e.stopPropagation(); // this will stop propagation of this event to upper level
+      this.isOpen = !this.isOpen;
 
+      if (this.isOpen) {
+        window.addEventListener("click", this.toogleDropedown);
+      } else {
+        window.removeEventListener("click", this.toogleDropedown);
+      }
     }
   }
 };
 </script>
 
 <style>
-.show .custom-dropdown {
-  border-bottom: 2px solid #2f80ed !important;
-}
 .custom-dropdown {
   border: 0 !important;
   border-radius: 0;
@@ -90,46 +92,43 @@ export default {
 }
 .custom-dropdown-menu {
   cursor: pointer;
-  max-width: 80px !important;
+  max-width: 100px !important;
   padding: 0 !important;
   min-width: 0px !important;
   border-radius: 0 0 5px 5px !important;
   border: 0 !important;
-  /* border-bottom: 1px solid #9c9c9c !important; */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+/*   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); */
 }
 .c-dropdown-item {
   padding: 0.25rem 1rem !important;
   border-radius: 0 !important;
   color: rgba(255, 255, 255, 0.5) !important;
 }
-.c-dropdown-item.active {
-  color: white !important;
+.c-dropdown-item.selected {
+  color: #007bff !important;
+}
+.c-dropdown-item.selected::before {
+  box-sizing: border-box;
+  display: inline-block;
+
+  content: "";
+  border-top: 0.3em solid transparent;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0.3em solid transparent;
+  border-left: 0.3em solid;
+}
+.rtl .c-dropdown-item.selected::before {
+  border-right: 0.3em solid ;
+  border-left: 0.3em solid transparent;
 }
 
 .c-dropdown-item:hover {
   color: white !important;
-  background-color: #8906aa !important;
+  background-color: rgb(88, 88, 88) !important;
 }
 
 .c-dropdown-item:last-child {
   border-radius: 0 0 5px 5px !important;
-}/* .custom-dropdown-menu a {
-  padding: 0.25rem 1rem !important;
-  border-radius: 0 !important;
-  color: rgba(255, 255, 255, 0.5) !important;
 }
-.custom-dropdown-menu a.active {
-  color: white !important;
-}
-
-.custom-dropdown-menu a:hover {
-  color: white;
-  background-color: #8906aa;
-}
-
-.custom-dropdown-menu a:last-child {
-  border-radius: 0 0 5px 5px !important;
-} */
-
 </style>
