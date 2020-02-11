@@ -2,9 +2,9 @@
   <nav
     ref="navbar"
     dir="ltr"
-    class="navbar fixed-top navbar-expand-sm  navbar-dark bg-blue  capitalize"
+    class="navbar fixed-top navbar-expand-md  navbar-dark bg-blue  capitalize"
   >
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand m-0" href="#">
         <Logo class />
         {{$t('full-name')}}
@@ -25,7 +25,10 @@
 
       <div class="collapse" :class="collapseClasses" id="navbarSupportedContent">
         <ul class="navbar-nav" :class="bindNavNavbarClasses">
-          <li class="nav-item menu-link">
+          <li class="nav-item menu-link active">
+            <a data-page="home" class="nav-link " href="#home">{{$t('home')}}</a>
+          </li>
+           <li class="nav-item menu-link">
             <a data-page="about" class="nav-link" href="#about">{{$t('about.label')}}</a>
           </li>
           <li class="nav-item menu-link">
@@ -86,7 +89,7 @@ export default {
     },
     is_mobile() {
       // media query sm 480px
-      const isMobile = window.matchMedia("(max-width: 480px)");
+      const isMobile = window.matchMedia("(max-width: 768px)");
       return isMobile.matches ? true : false;
     }
   },
@@ -264,8 +267,8 @@ export default {
   fill: #007bff;
 }
 
-/* large devices lg (desktop, 1024px and up) */
-@media (min-width: 1024px) {
+/* md devices  (desktop, 1024px and up) */
+@media (min-width: 720px) {
   .navbar .active {
     border-bottom: 2px solid #2D83CF  ;
 

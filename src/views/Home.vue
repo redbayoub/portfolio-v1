@@ -1,14 +1,14 @@
 <template>
   <div>
     <NavBar id="navbar" :currentSection="currentSection" />
-    <Hero id="hero" ref="hero" />
+    <Hero id="hero" class="scrollable" ref="hero" />
 
     <AboutMe class="scrollable" id="about" ref="about" data-step-no="1" />
     <Skills class="bg-light scrollable" id="skills" ref="skills" data-step-no="2" />
     <Work class="scrollable" id="work" ref="work" data-step-no="3" />
-    <Contact class="scrollable" id="contact" ref="contact" data-step-no="4" />
+    <Contact class="bg-blue-dark  scrollable" id="contact" ref="contact" data-step-no="4" />
 
-    <MyFooter />
+    <MyFooter class="bg-blue-dark"/>
   </div>
 </template>
 
@@ -81,14 +81,14 @@ body {
   font-family: Montserrat, Arial, sans-serif;
   direction: ltr;
   color: #031E36;
+
 }
 
 .divder {
   border-radius: 10px;
-  background-color: #031E36;
+  background-color:#2D83CF ;
   width: 80px;
   height: 5px;
-  margin: 0 auto 0;
 }
 
 .center-inner-div {
@@ -104,9 +104,7 @@ body {
   text-transform: capitalize;
 }
 
-#about {
-  height: 100vh;
-}
+
 #about,
 #skills,
 #work,
@@ -166,9 +164,16 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 /* Small devices sm (tablets, 768px and up) */
 @media (min-width: 768px) {
   #skills,
+  #about,
   #work,
   #contact {
     min-height: 100vh;
   }
 }
+
+/* typography */
+html {
+  font-size: 1rem;
+}
+
 </style>

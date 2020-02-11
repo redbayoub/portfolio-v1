@@ -1,9 +1,9 @@
 <template>
   <section class="hero container-fluid center-inner-div  capitalize " id="hero">
     <div class="container text-center">
-      <h1 class="display-4 ">{{$t('hero.title')}}</h1>
+       <h1 class="display-4 ">{{$t('hero.title')}}</h1>
       <p class="lead">{{$t('hero.lead')}}</p>
-      <a name id class="btn btn-outline-light btn-lg   mr-2" href="#work" role="button">{{$t('hero.view-my')+ ' '+$t('work.label')}}</a>
+      <a name id class="btn btn-outline-light    mr-2" href="#work" role="button">{{$t('hero.view-my')+ ' '+$t('work.label')}}</a>
       <a name id class="btn btn-outline-light    mr-2" href="#contact" role="button">{{$t('contact.title')}}</a>
       
     </div>

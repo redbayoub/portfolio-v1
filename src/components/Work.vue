@@ -1,7 +1,7 @@
 <template>
   <section class="container work">
-    <h1 class="text-center capitalize display-4" :class="isRtl">{{$t('work.label')}}</h1>
-    <div class="divder my-4"></div>
+      <h1 class="text-center capitalize display-4" :class="isRtl">{{$t('work.label')}}</h1>
+    <div class="divder my-4 mx-auto"></div>
     <div class="row justify-content-center no-gutters capitalize" :class="isRtl">
       <button
         type="button"

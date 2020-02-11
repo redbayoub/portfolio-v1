@@ -1,9 +1,9 @@
 <template>
   <section class="skills capitalize">
     <h1 class="text-center display-4">{{$t('skills.label')}}</h1>
-    <div class="divder my-4"></div>
+    <div class="divder my-4 mx-auto"></div>
     <div class="container">
-      <div class="row">
+       <div class="row">
         <SkillCard
           :key="index"
           v-for="(skill,index) in skills"

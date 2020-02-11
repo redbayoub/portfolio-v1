@@ -1,7 +1,7 @@
 {
 	"about": {
 		"label": "about",
-		"title": "about me"
+		"title": "who am i ?"
 	},
 	"contact": {
 		"form": {
@@ -23,12 +23,14 @@
 		"view-my": "view my"
 	},
 	"hire-me": "Hire me",
+	"home": "home",
 	"langs": "languages",
 	"resume": "Resume",
 	"skills": {
 		"frameworks": "frameworks",
 		"label": "skills",
 		"languages": "languages",
+		"title": "What i can do for you ?",
 		"tools": "tools"
 	},
 	"work": {
@@ -36,6 +38,7 @@
 		"desktop": "desktop",
 		"label": "work",
 		"mobile": "mobile",
+		"title": "What i built ?",
 		"web": "web"
 	}
 }
