@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-12 mx-auto col-md-6">
-          <form name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true">
+          <form name="contact" netlify-honeypot="bot-field" data-netlify="true">
             <p class="hidden" style="display:none;">
               <label class="text-light">
                 Don’t fill this out if you're human:
