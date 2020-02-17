@@ -2,7 +2,7 @@
   <nav
     ref="navbar"
     dir="ltr"
-    class="navbar fixed-top navbar-expand-md  navbar-dark bg-blue  capitalize"
+    class="navbar fixed-top navbar-expand-md navbar-dark bg-blue capitalize"
   >
     <div class="container-fluid">
       <a class="navbar-brand m-0" href="#">
@@ -19,16 +19,15 @@
         :aria-expanded="isToogled"
         aria-label="Toggle navigation"
       >
-        <!--   <span class="navbar-toggler-icon"></span> -->
         <span></span>
       </button>
 
       <div class="collapse" :class="collapseClasses" id="navbarSupportedContent">
         <ul class="navbar-nav" :class="bindNavNavbarClasses">
           <li class="nav-item menu-link active">
-            <a data-page="home" class="nav-link " href="#home">{{$t('home')}}</a>
+            <a data-page="home" class="nav-link" href="#home">{{$t('home')}}</a>
           </li>
-           <li class="nav-item menu-link">
+          <li class="nav-item menu-link">
             <a data-page="about" class="nav-link" href="#about">{{$t('about.label')}}</a>
           </li>
           <li class="nav-item menu-link">
@@ -41,12 +40,12 @@
             <a data-page="contact" class="nav-link" href="#contact">{{$t('contact.label')}}</a>
           </li>
 
-          <LangChanger class="nav-item mr-2" style="padding:2px;" id="langChanger"/>
+          <LangChanger class="nav-item mr-2" style="padding:2px;" id="langChanger" />
           <li class="nav-item">
             <a
               name
               id
-              class="btn btn-outline-light   "
+              class="btn btn-outline-light"
               style="margin:1px;"
               href="#contact"
               role="button"
@@ -81,14 +80,14 @@ export default {
       return {
         "ml-auto": !this.isRtl(),
         "mr-auto": this.isRtl(),
-        "rtl": this.is_mobile && this.isRtl(),
+        rtl: this.is_mobile && this.isRtl(),
         /* "c-rtl": this.$i18n.locale === "ar", */
         /* "rtl":this.is_mobile && this.$i18n.locale === "ar", */
         "bt-menu-open": this.isToogled
       };
     },
     is_mobile() {
-      // media query sm 480px
+      // media query md 768px
       const isMobile = window.matchMedia("(max-width: 768px)");
       return isMobile.matches ? true : false;
     }
@@ -144,22 +143,6 @@ export default {
 </script>
 
 <style>
-/* .navbar{
-  height: 60px;
-} */
-/* .navbar {
-  height: 60px;
-  z-index: 1000;
-  position: sticky;
-  background-color: transparent !important;
-  border-bottom: 3px #007bff solid;
-} */
-/* .icon-btn {
-  background-color: transparent;
-  border: 0px solid transparent;
-  padding: 0 10px 0 5px;
-} */
-/* Hambergur for ltr lang */
 .bt-menu-trigger {
   font-size: 30px;
   position: relative;
@@ -181,7 +164,7 @@ export default {
   width: 100%;
   height: 0.15em;
   margin-top: -0.1em;
-  background-color: rgba(255,255,255,.9);
+  background-color: rgba(255, 255, 255, 0.9);
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -198,7 +181,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background:  rgba(255,255,255,.9);
+  background: rgba(255, 255, 255, 0.9);
   content: "";
   -webkit-transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
@@ -217,61 +200,19 @@ export default {
 .bt-menu-trigger.bt-menu-open span:before {
   -webkit-transform: translateY(-0.36em) translateX(0.65em) rotate(45deg)
     scaleX(0.6);
-  transform: translateY(-0.30em) translateX(0.45em) rotate(45deg) scaleX(0.6);
+  transform: translateY(-0.3em) translateX(0.45em) rotate(45deg) scaleX(0.6);
 }
 
 .bt-menu-trigger.bt-menu-open span:after {
   -webkit-transform: translateY(0.36em) translateX(0.65em) rotate(-45deg)
     scaleX(0.6);
-  transform: translateY(0.30em) translateX(0.45em) rotate(-45deg) scaleX(0.6);
-}
-/* Hambergur for rtl lang */
-.c-rtl.bt-menu-trigger span {
-  left: auto;
-  right: 0;
-}
-
-.c-rtl.bt-menu-trigger span:after,
-.c-rtl.bt-menu-trigger span:before {
-  left: auto;
-  right: 0;
-}
-
-.c-rtl.bt-menu-trigger.bt-menu-open span:before {
-  -webkit-transform: translateY(-0.36em) translateX(-0.65em) rotate(-45deg)
-    scaleX(0.6);
-  transform: translateY(-0.35em) translateX(-0.65em) rotate(-45deg) scaleX(0.6);
-}
-
-.c-rtl.bt-menu-trigger.bt-menu-open span:after {
-  -webkit-transform: translateY(0.36em) translateX(-0.65em) rotate(45deg)
-    scaleX(0.6);
-  transform: translateY(0.35em) translateX(-0.65em) rotate(45deg) scaleX(0.6);
-}
-
-/* overwrite wierd margin on nav in mobile when using bootstrap rtl */
-.rtl .navbar-nav .nav-item + .nav-item,
-[dir="rtl"] .navbar-nav .nav-item + .nav-item {
-  margin-right: 0 !important;
-}
-
-.nav-bg {
-  background-color: rgba(51, 04, 65, 0.7) !important;
-}
-
-.bg-purple {
-  /* background-color: #330055 !important; */
-  background-color: #510465 !important;
-}
-.icon-btn :hover {
-  fill: #007bff;
+  transform: translateY(0.3em) translateX(0.45em) rotate(-45deg) scaleX(0.6);
 }
 
 /* md devices  (desktop, 1024px and up) */
 @media (min-width: 720px) {
   .navbar .active {
-    border-bottom: 2px solid #2D83CF  ;
-
+    border-bottom: 2px solid #2d83cf;
   }
 }
 </style>

@@ -3,35 +3,34 @@
     <div class="container">
       <div class>
         <h1 class="display-4 text-center text-white">{{$t('contact.title')}}</h1>
-        <div class="divder mx-auto my-4"></div>
+        <div class="divder mx-auto my-4 bg-light"></div>
       </div>
-      <div class="row">
-        <div class="col mx-auto col-md-6">
-          <div class="text-center">
-            <a
-              name
-              id
-              class="btn mx-2"
-              href="https://github.com/redayoub47"
-              target="_blank"
-              role="button"
-            >
-              <SvgIcon name="githubLogo" fill="#ffffff" />
-            </a>
-            <a
-              name
-              id
-              class="btn mx-2"
-              href="https://www.linkedin.com/in/bayoub-reddah/"
-              target="_blank"
-              role="button"
-            >
-              <SvgIcon name="linkdinLogo" fill="#ffffff" />
-            </a>
-          </div>
-          <div class="divder mx-auto my-4" style="height:1px;"></div>
+      <div class="row justify-content-center">
+        <div class="contact-links text-white">
+          <a
+            name
+            id
+            class="btn btn-outline-primary"
+            href="https://github.com/redayoub47"
+            target="_blank"
+            role="button"
+          >
+            <SvgIcon name="githubLogo" fill="#ffffff" />
+          </a>
+          <a
+            name
+            id
+            class="btn btn-outline-primary"
+            href="https://www.linkedin.com/in/bayoub-reddah/"
+            target="_blank"
+            role="button"
+          >
+            <SvgIcon name="linkdinLogo" fill="#ffffff" />
+          </a>
+        </div>
 
-          <form method="post" action="#">
+        <div class="col-12 mx-auto col-md-6">
+          <form method="post" action="/" netlify>
             <div class="form-group">
               <label for="name">
                 <span class="text-white">{{$t('contact.form.name')}}</span>
@@ -40,6 +39,7 @@
               </label>
               <input
                 type="text"
+                name="name"
                 class="form-control custom-form-input"
                 id="name"
                 autocomplete="off"
@@ -55,6 +55,7 @@
               </label>
               <input
                 type="email"
+                name="email"
                 class="form-control custom-form-input"
                 id="email"
                 aria-describedby="emailHelp"
@@ -71,6 +72,7 @@
                 class="form-control custom-form-input"
                 autocomplete="off"
                 id="message"
+                name="message"
                 rows="6"
                 required
               ></textarea>
@@ -95,14 +97,12 @@
 
 <script>
 import SvgIcon from "@/components/SvgPathIcon";
+import MyFooter from "@/components/MyFooter";
 export default {
   name: "contact",
   components: {
-    SvgIcon
-  },
-  computed: {
-    /*  enter_name:this.$t('contact.form.enter')+$t('contact.form.name'),
-    enter_email:this.$t('contact.form.enter')+$t('contact.form.email'), */
+    SvgIcon,
+    MyFooter
   }
 };
 </script>
@@ -110,11 +110,44 @@ export default {
 <style>
 .custom-form-input {
   background-color: rgb(159, 180, 197) !important;
-  color: #0f4c81!important;
+  color: #0f4c81 !important;
   border-color: #0f4c81 !important;
 }
-/*  ::placeholder { 
-  color: #2D83CF;
-  opacity: 1;
-} */
+.contact-links-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.contact-links {
+  float: left;
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  border-right: solid 1px rgb(159, 180, 197);
+  text-transform: lowercase;
+}
+
+.rtl .contact-links{
+  border: none;
+  border-left: solid 1px rgb(159, 180, 197);
+}
+.contact-links a {
+  width: 50px;
+  margin: 10px 10px 10px;
+}
+
+@media screen and (max-width: 720px) {
+  .rtl .contact-links{
+    border: none;
+    border-bottom: solid 1px white;
+  }
+  .contact-links {
+    flex-direction: row;
+    border: none;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: solid 1px white;
+  }
+}
 </style>

@@ -3,16 +3,16 @@
     <div class="card work-card">
       <img class="card-img img-fluid" :src="img" alt />
       <div class="card-img-overlay d-flex flex-column">
-        <div class="work-card-content">
-          <h4 class="card-title text-light">{{title}}</h4>
-          <p class="card-text text-light">{{subtitle}}</p>
+        <div class="work-card-content p-3">
+          <h3 class="card-title text-light">{{title}}</h3>
           <p>
             <span
-              class="badge badge-pill badge-light mr-1"
+              class="badge badge-pill text-light border border-outline-light mr-1"
               v-for="(stack,index) in stacks"
               :key="index"
             >{{stack}}</span>
           </p>
+          <p class="card-text text-light">{{subtitle}}</p>
         </div>
         <div class="container no-gutters mt-auto">
           <div class="row">
@@ -20,7 +20,7 @@
               name
               id
               class="btn border-light card-btn col mx-1"
-              href="#"
+              :href="link"
               target="_blank"
               role="button"
               v-if="link!=null && link.length!=0"
@@ -31,7 +31,7 @@
               name
               id
               class="btn border-light card-btn col mx-1"
-              href="#"
+              :href="source"
               target="_blank"
               role="button"
               v-if="source!=null && source.length!=0"
@@ -49,32 +49,17 @@
 import SvgIcon from "@/components/SvgPathIcon";
 export default {
   name: "workCard",
-  props: ["title", "id", "subtitle", "body", "stacks", "link", "source", "img"],
+  props: ["title", "id", "subtitle", "stacks", "link", "source", "img"],
   components: {
     SvgIcon
   }
 };
 </script>
 
-<style>
+<style scoped>
 .work-card {
   cursor: pointer;
-  /* width: 18rem; */
-  /*  border-radius: 0px; */
   border: none;
-}
-
-/* xs sm md devices (desktop, 1024px and up) */
-@media (max-width: 1023px) {
-  .work-card {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  }
-}
-/* large devices lg (desktop, 1024px and up) */
-@media (min-width: 1024px) {
-  .work-card:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  }
 }
 
 .work-card img {
@@ -97,10 +82,7 @@ export default {
   transform: translate(100000000%); /* only to make out of the frame */
   transition: transform 0s;
 }
-/* .overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 1;
-} */
+
 .card-btn {
   margin: auto 0 0;
 }

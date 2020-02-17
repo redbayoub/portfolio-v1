@@ -1,6 +1,6 @@
 <template>
   <section class="container work">
-      <h1 class="text-center capitalize display-4" :class="isRtl">{{$t('work.label')}}</h1>
+    <h1 class="text-center capitalize display-4" :class="isRtl">{{$t('work.label')}}</h1>
     <div class="divder my-4 mx-auto"></div>
     <div class="row justify-content-center no-gutters capitalize" :class="isRtl">
       <button
@@ -28,20 +28,14 @@
         @click="onProjectFilterClicked('web')"
       >{{$t('work.web')}}</button>
     </div>
-    <!--  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"> -->
-    <!-- class="col-md-4  col-sm-6 col-6 col-offset " -->
-
-    <!-- row no-gutters -->
-    <!--  class="col-md-4 col-sm-6 pb-4 mx-3 mx-md-0 p-md-2  " -->
     <transition-group name="list" class="card-row" :class="isCRtl">
       <WorkCard
         class="card-col"
         v-for="project in projects"
         v-bind:key="project.id"
         v-bind:id="project.id"
-        v-bind:title="project.title"
-        v-bind:subtitle="project.subtitle"
-        v-bind:body="project.body"
+        v-bind:title="getProjectTitle(project)"
+        v-bind:subtitle="getProjectSubtitle(project)"
         v-bind:img="project.img"
         v-bind:link="project.link"
         v-bind:source="project.source"
@@ -61,54 +55,86 @@ export default {
   created() {
     this.projects = this.orginal_projects.slice();
   },
+
   data() {
     return {
       project_type: "all",
+      // projects-types= Enum[ web , desk , mob]
       orginal_projects: [
         {
+          id: 0,
+          title_en: "otlob tawa",
+          title_ar: "أطلب توا",
+          type: "mob",
+          subtitle_en: "ordring services from the admin",
+          subtitle_ar: "طلب خدمات من الأدمين",
+          link:
+            "https://play.google.com/store/apps/details?id=com.libyataza.otlob_tawa_client",
+          stacks: ["Flutter",'Android', "Firebase"],
+          img: "/assets/images/projects/otlob-tawa.jpg"
+        },
+        {
           id: 1,
-          title: "Woops",
-          type: "web",
-          subtitle: "ordring app",
-          body: "VueJS, Firebase",
-          link: "#",
-          source: "#",
-          stacks: ["VueJS", "Firebase"],
-          img: "https://via.placeholder.com/200"
+          title_en: "Gas Libya",
+          title_ar: "غاز ليبيا",
+          type: "mob",
+          subtitle_en: "order gas containers from your home",
+          subtitle_ar: "أطلب قارورات الغاز من منزلك",
+          link:
+            "https://play.google.com/store/apps/details?id=com.libyataza.gas_app_client",
+          stacks: ["Flutter",'Android', "Firebase"],
+          img: "/assets/images/projects/gas-order.jpg"
         },
         {
           id: 2,
-          title: "Woops",
-          type: "mob",
-          subtitle: "ordring app",
-          body: "VueJS, Firebase",
-          link: "#",
-          source: "#",
-          stacks: ["Android", "Firebase"],
-          img: "https://via.placeholder.com/200"
+          title_en: "Simple Text editor",
+          title_ar: "محرر نصوص بسيط",
+          type: "desk",
+          subtitle_en: "",
+          subtitle_ar: "",
+          source: "https://github.com/redayoub47/javafx_text_editor",
+          stacks: ["JavaFX", "Java"],
+          img: "/assets/images/projects/text-editor.jpg"
         },
         {
           id: 3,
-          title: "Woops",
+          title_en: "Media Player",
+          title_ar: "قارئ الوسائط",
           type: "desk",
-          subtitle: "ordring app",
-          body: "VueJS, Firebase",
-          link: "#",
-          stacks: ["Java", "MySql"],
-          source: "#",
-          img: "https://via.placeholder.com/200"
+          subtitle_en:
+            "Supports all the extension that are officialy supported in Java ( mp4 , mp3 , wav , ...)",
+          subtitle_ar:
+            "يدعم الصيغ المدعومة رسميا في الجافا منها mp4 , mp3 , wav",
+          stacks: ["JavaFX", "Java"],
+          source: "https://github.com/redayoub47/javafx_media_player",
+          img: "/assets/images/projects/media-player.jpg"
         },
         {
           id: 4,
-          title: "Woops",
-          type: "web",
-          subtitle: "ordring app",
-          body: "VueJS, Firebase",
-          link: "#",
-          stacks: ["VueJS", "Firebase"],
-          source: "#",
-          img: "https://via.placeholder.com/200"
-        }
+          title_en: "Chat API + Desktop Client",
+          title_ar: "شات API + واجهة عميل للحاسوب",
+          type: "desk",
+          subtitle_en:
+            "َAllow the users to comunicate via mesagges ( text, audio , video , file ) and allow them to create and join groups",
+          subtitle_ar:
+            "برنامج يسمح للمسخدمين من التواصل فيما بينهم عن طريق الرسائل ( كتابية . صوت . فيديو . ملف ) وكذلك يمكن انشاء مجموعات والتواصل في مجموعات",
+          stacks: ["JavaFX", "MySQL", "Spring Boot"],
+          source: "https://github.com/redayoub47/javafx_chat_client",
+          img: "/assets/images/projects/chat.jpg"
+        },
+        {
+          id: 5,
+          title_en: "Doctor Appointment App",
+          title_ar: "تطبيق حجز مواعيد",
+          type: "mob",
+          subtitle_en:
+            "App that allows users to take a doctors appointment in 'one click' from their home",
+          subtitle_ar:
+            "تطبيق لحجز مواعيد لدى الأطباء حيث يمكن للمسخدمين طلب اضافتهم كدكاترة داخل التطبيق كما يمكن لهم الغاء المواعيد",
+          stacks: ["Android", "Java", "Spring Boot","Firebase","MySQL"],
+          source: "https://github.com/redayoub47/doctor_appointment_app",
+          img: "/assets/images/projects/doctor.jpg"
+        },
       ],
       projects: null
     };
@@ -126,6 +152,14 @@ export default {
     }
   },
   methods: {
+    getProjectTitle: function(project) {
+      return this.$i18n.locale == "ar" ? project.title_ar : project.title_en;
+    },
+    getProjectSubtitle: function(project) {
+      return this.$i18n.locale == "ar"
+        ? project.subtitle_ar
+        : project.subtitle_en;
+    },
     onProjectFilterClicked(selected_project_type) {
       this.project_type = selected_project_type;
       if (selected_project_type == "all") {
@@ -221,9 +255,4 @@ export default {
     width: 100%;
   }
 }
-
-/* 
-.work-card{
-  width: 300px;;
-} */
 </style>

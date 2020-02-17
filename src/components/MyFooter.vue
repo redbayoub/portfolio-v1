@@ -1,5 +1,6 @@
 <template>
   <footer class=" p-2 capitalize">
+   
     <div class="d-flex">
       <div class="align-self-center mx-auto">
         <span class="text-white ">{{$t('copyrights')}} </span>
@@ -23,4 +24,7 @@ export default {
 </script>
 
 <style>
+footer {
+  background-color: #021627;
+}
 </style>

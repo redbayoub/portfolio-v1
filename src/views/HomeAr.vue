@@ -1,14 +1,12 @@
 <template>
   <div>
-    <NavBar id="navbar" :currentSection="currentSection"  />
-    <header>
-      <Hero id="hero" ref="hero" class="rtl" />
-    </header>
-    <AboutMe id="about" ref="about" class="rtl" />
-    <Skills class="bg-light" id="skills" ref="skills" />
-    <Work id="work" ref="work" />
-    <Contact id="contact" ref="contact" class="rtl" />
-    <MyFooter class="rtl" />
+    <NavBar id="navbar" />
+    <Hero id="hero" class="scrollable rtl" ref="hero" />
+    <AboutMe class="scrollable rtl" id="about" ref="about" />
+    <Skills class="bg-light scrollable" id="skills" ref="skills" />
+    <Work class="scrollable" id="work" ref="work" />
+    <Contact class="bg-blue-dark scrollable rtl" id="contact" ref="contact" />
+    <MyFooter />
   </div>
 </template>
 
@@ -21,12 +19,12 @@ import Skills from "@/components/Skills";
 import Work from "@/components/Work";
 import Contact from "@/components/Contact";
 import MyFooter from "@/components/MyFooter";
-import scrollspy from "@/js/scrollspy.js";
+import scrollspy from "@/assets/js/scrollspy.js";
 
 export default {
   name: "home",
   metaInfo: {
-    title: "بايوب رداح - الصفحة الشخصية",
+    title: "بايوب رداح | مطور برامج",
     // override the parent template and just use the above title only
     titleTemplate: null,
     htmlAttrs: {
@@ -45,6 +43,23 @@ export default {
         content:
           "جافا , مواقع , php , java , javascript , php , flutter , andorid , html , ويب , تطبيقات , تطوير , جافاسكريبت , أندرويد , تصميم , فلاتر , برمجة , مطور , مبرمج"
       }
+    ],
+    link: [
+      {
+        rel: "stylesheet",
+        href: "https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css",
+        integrity:
+          "sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If",
+        crossorigin: "anonymous"
+      },
+      {
+        rel: "stylesheet",
+        href: "/assets/css/global.css"
+      },{
+        rel: "stylesheet",
+        href: "/assets/css/ar.css"
+      },
+
     ]
   },
   components: {
@@ -78,66 +93,5 @@ export default {
 </script>
 
 <style>
-@import url("../static/css/bootstrap-rtl.min.css");
 
-html {
-  scroll-behavior: smooth;
-}
-html,
-body {
-  font-family: Helvetica, Arial, sans-serif;
-
-  direction: rtl;
-}
-
-.divder {
-  border-radius: 10px;
-  background-color: black;
-  width: 80px;
-  height: 5px;
-  margin: 0 auto 0;
-}
-
-.center-inner-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.shadow {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-}
-
-.capitalize {
-  text-transform: capitalize;
-}
-
-#about {
-  height: 100vh;
-}
-#about,
-#skills,
-#work,
-#contact {
-  padding: 4rem 0 4rem !important;
-}
-
-header {
-  background-color: #330055;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23330055' cx='50' cy='0' r='50'/%3E%3Cg fill='%233a015d' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23410165' cx='50' cy='100' r='50'/%3E%3Cg fill='%2348026e' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23500376' cx='50' cy='200' r='50'/%3E%3Cg fill='%2357047e' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%235f0587' cx='50' cy='300' r='50'/%3E%3Cg fill='%2367068f' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%236f0798' cx='50' cy='400' r='50'/%3E%3Cg fill='%237707a0' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%238008a9' cx='50' cy='500' r='50'/%3E%3Cg fill='%238909b1' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%239109ba' cx='50' cy='600' r='50'/%3E%3Cg fill='%239a09c3' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23a309cb' cx='50' cy='700' r='50'/%3E%3Cg fill='%23ad09d4' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%23b608dc' cx='50' cy='800' r='50'/%3E%3Cg fill='%23c007e5' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23c905ee' cx='50' cy='900' r='50'/%3E%3Cg fill='%23d303f6' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23D0F' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
-  background-attachment: fixed;
-  background-size: contain;
-  width: 100%;
-  /* background by SVGBackgrounds.com */
-  color: white;
-}
-
-/* Small devices sm (tablets, 768px and up) */
-@media (min-width: 768px) {
-  #skills,
-  #work,
-  #contact {
-    min-height: 100vh;
-  }
-}
 </style>

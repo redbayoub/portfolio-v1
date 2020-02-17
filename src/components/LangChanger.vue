@@ -12,7 +12,7 @@
       <span class="lang-name capitalize">{{$t('langs')}}</span>
     </a>
     <div
-      class="dropdown-menu custom-dropdown-menu bg-dark"
+      class="dropdown-menu custom-dropdown-menu bg-blue"
       v-bind:class="{'show':isOpen}"
       id="langsMenu"
       aria-labelledby="langsBtn"
@@ -83,11 +83,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .custom-dropdown {
   border: 0 !important;
   border-radius: 0;
   padding: 6px 0 6px !important;
+  margin-right: 10px;
   color: rgba(255, 255, 255, 0.5) !important;
 }
 .custom-dropdown-menu {
@@ -98,7 +99,7 @@ export default {
   border-radius: 0 0 5px 5px !important;
   border: 0 !important;
 
-/*   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 .c-dropdown-item {
   padding: 0.25rem 1rem !important;
@@ -106,7 +107,7 @@ export default {
   color: rgba(255, 255, 255, 0.5) !important;
 }
 .c-dropdown-item.selected {
-  color: #007bff !important;
+  color: white !important;
 }
 .c-dropdown-item.selected::before {
   box-sizing: border-box;
@@ -119,16 +120,48 @@ export default {
   border-left: 0.3em solid;
 }
 .rtl .c-dropdown-item.selected::before {
-  border-right: 0.3em solid ;
+  border-right: 0.3em solid;
   border-left: 0.3em solid transparent;
 }
 
 .c-dropdown-item:hover {
   color: white !important;
-  background-color: rgb(88, 88, 88) !important;
+  background-color: #031e36 !important;
 }
 
 .c-dropdown-item:last-child {
   border-radius: 0 0 5px 5px !important;
+}
+
+.rtl .dropdown-toggle::after {
+  display: none;
+}
+.rtl .dropdown-toggle::before {
+  display: inline-block;
+  margin-right: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid;
+  border-left: 0.3em solid transparent;
+  border-bottom: 0;
+  border-right: 0.3em solid transparent;
+}
+.rtl .custom-dropdown-menu {
+  margin-right: 20px;
+  right: -12px;
+}
+@media screen and (max-width: 768px) {
+  .rtl .custom-dropdown-menu {
+    float: right;
+    right: 0;
+  }
+
+  .custom-dropdown {
+    margin-right: 0;
+  }
+  .custom-dropdown-menu {
+    box-shadow: none;
+    margin-bottom: 10px;
+  }
 }
 </style>

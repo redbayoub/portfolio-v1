@@ -1,44 +1,55 @@
 {
-	"about": {
-		"label": "about",
-		"title": "who am i ?"
-	},
-	"contact": {
-		"form": {
-			"email": "email address",
-			"enter": "enter",
-			"message": "message",
-			"name": "name",
-			"required": "required",
-			"send": "send"
-		},
-		"label": "contact",
-		"title": "get in touch"
-	},
-	"copyrights": "designed and developed by",
-	"full-name": "Bayoub Reddah",
-	"hero": {
-		"lead": "various experience in mobile and full-stack web development",
-		"title": "Software Developer",
-		"view-my": "view my"
-	},
-	"hire-me": "Hire me",
-	"home": "home",
-	"langs": "languages",
-	"resume": "Resume",
-	"skills": {
-		"frameworks": "frameworks",
-		"label": "skills",
-		"languages": "languages",
-		"title": "What i can do for you ?",
-		"tools": "tools"
-	},
-	"work": {
-		"all": "all",
-		"desktop": "desktop",
-		"label": "work",
-		"mobile": "mobile",
-		"title": "What i built ?",
-		"web": "web"
-	}
+  "about": {
+    "label": "about",
+    "p1": "Hello! I’m Bayoub, a freelance software developer with +3 years of experience",
+    "p2": "Specialized in developing phone apps (Android & iOS) and developing websites and also programming desktop programs",
+    "p3": {
+      "title": "The standards that I follow in my projects:",
+      "i1": "Using the latest technologies",
+      "i2": "Apply maximum security with optimized performance",
+      "i3": "Choosing the best and fastest ways for development",
+      "i4": "Making sure to satisfy the user needs"
+    },
+    "p4": "Hers’s some technologies that I love working with:",
+    "p5": "What make me different is making sure that your getting the best results with the best price possible.",
+    "p6": "If you’ve got any questions, don’t hesitate to contact me any time .. I am waiting for you!",
+    "title": "About me"
+  },
+  "contact": {
+    "form": {
+      "email": "email address",
+      "enter": "enter",
+      "message": "message",
+      "name": "name",
+      "required": "required",
+      "send": "send"
+    },
+    "label": "contact",
+    "title": "get in touch"
+  },
+  "copyrights": "designed and developed by",
+  "full-name": "Bayoub Reddah",
+  "hero": {
+    "lead": "experienced in developing in backend and mobile apps",
+    "title": "Software Developer",
+    "view-my": "view my"
+  },
+  "hire-me": "Hire me",
+  "home": "home",
+  "langs": "languages",
+  "resume": "Resume",
+  "skills": {
+    "frameworks": "frameworks",
+    "label": "skills",
+    "languages": "languages",
+    "title": "What i can do for you ?",
+    "tools": "tools"
+  },
+  "work": {
+    "all": "all",
+    "desktop": "desktop",
+    "label": "work",
+    "mobile": "mobile",
+    "web": "web"
+  }
 }

@@ -27,7 +27,7 @@ export default {
 
 <style>
 .skill-card{
-    color: #031E36;
+    color: #031e36;
 }
 .skill-title{
     margin: 0;
