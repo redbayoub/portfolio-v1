@@ -30,7 +30,13 @@
         </div>
 
         <div class="col-12 mx-auto col-md-6">
-          <form name="contact" netlify>
+          <form name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true">
+            <p class="hidden" style="display:none;">
+              <label class="text-light">
+                Don’t fill this out if you're human:
+                <input name="bot-field" />
+              </label>
+            </p>
             <div class="form-group">
               <label for="name">
                 <span class="text-white">{{$t('contact.form.name')}}</span>
@@ -128,7 +134,7 @@ export default {
   text-transform: lowercase;
 }
 
-.rtl .contact-links{
+.rtl .contact-links {
   border: none;
   border-left: solid 1px rgb(159, 180, 197);
 }
@@ -138,7 +144,7 @@ export default {
 }
 
 @media screen and (max-width: 720px) {
-  .rtl .contact-links{
+  .rtl .contact-links {
     border: none;
     border-bottom: solid 1px white;
   }
