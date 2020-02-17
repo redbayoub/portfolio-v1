@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-12 mx-auto col-md-6">
-          <form method="post" action="/" netlify>
+          <form name="contact" netlify>
             <div class="form-group">
               <label for="name">
                 <span class="text-white">{{$t('contact.form.name')}}</span>
