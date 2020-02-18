@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-12 mx-auto col-md-6">
-          <form action="https://send.pageclip.co/CbfoEu8THHLB8ZdDohlyxjPfGLuSMf5b/contact-form" class="pageclip-form" method="post">
+          <form @submit.prevent="OnFormSubmited">
             <div class="form-group">
               <label for="name">
                 <span class="text-white">{{$t('contact.form.name')}}</span>
@@ -40,6 +40,7 @@
               <input
                 type="text"
                 name="name"
+                v-model="name"
                 class="form-control custom-form-input"
                 id="name"
                 autocomplete="off"
@@ -56,12 +57,14 @@
               <input
                 type="email"
                 name="email"
+                 v-model="email"
                 class="form-control custom-form-input"
                 id="email"
                 :placeholder="$t('contact.form.enter')+' '+$t('contact.form.email')"
                 required
               />
-            </div><div class="form-group">
+            </div>
+            <div class="form-group">
               <label for="subject">
                 <span class="text-white">{{$t('contact.form.subject')}}</span>
                 <sup style class="text-danger mx-1">*</sup>
@@ -69,6 +72,7 @@
               <input
                 type="text"
                 name="subject"
+                 v-model="subject"
                 class="form-control custom-form-input"
                 id="subject"
                 :placeholder="$t('contact.form.enter')+' '+$t('contact.form.subject')"
@@ -84,6 +88,7 @@
                 class="form-control custom-form-input"
                 autocomplete="off"
                 minlength="3"
+                 v-model="message"
                 id="message"
                 name="message"
                 rows="6"
@@ -95,10 +100,16 @@
               <sup style class="text-danger mx-1">*</sup>
               <span class="text-white">{{$t('contact.form.required')}}</span>
             </small>
+
             <div class="mx-auto mt-2">
+              <vue-recaptcha
+                theme="dark"
+                @verify="onCaptchaVerified"
+                sitekey="6Leh6dkUAAAAAL2KFiSuCtfHHCB4ksMSd5nwms6P"
+              ></vue-recaptcha>
               <button
                 type="submit"
-                class="btn btn-primary bg-blue-light border-0 text-right capitalize"
+                class="mt-2 btn btn-primary bg-blue-light border-0 text-right capitalize"
               >{{$t('contact.form.send')}}</button>
             </div>
           </form>
@@ -110,12 +121,47 @@
 
 <script>
 import SvgIcon from "@/components/SvgPathIcon";
+import VueRecaptcha from "vue-recaptcha";
 import MyFooter from "@/components/MyFooter";
+import axios from "axios";
 export default {
   name: "contact",
   components: {
     SvgIcon,
+    VueRecaptcha,
     MyFooter
+  },
+  data() {
+    return {
+      recapToken: null,
+      name:null,
+      email:null,
+      subject:null,
+      message:null,
+    };
+  },
+  methods: {
+    onCaptchaVerified(response) {
+      this.recapToken = response;
+    },
+    onFormSubmited(e) {
+      if(this.recapToken==null)return;
+      const payload={
+        recapToken:this.recapToken,
+        name:this.name,
+        email:this.name,
+        subject:this.name,
+        message:this.name,
+      };
+      axios
+        .post("/.netlify/functions/verifyRecaptchaAndSendEmail", payload)
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
   }
 };
 </script>
