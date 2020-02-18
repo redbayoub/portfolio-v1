@@ -20,9 +20,22 @@ const axios = require('axios');
 const reCapUrl = "https://www.google.com/recaptcha/api/siteverify";
 const pageclipUrl="https://send.pageclip.co/CbfoEu8THHLB8ZdDohlyxjPfGLuSMf5b/contact-form"
 // we got this from personal reCaptcha Google Page
-const reCaptchaSecret = "6Leh6dkUAAAAAD0G155ZxHEUod9_wDjujGNo8Zcb" ; 
+const reCaptchaSecret = process.env.reCaptchaSecret; 
+const headers = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Content-Type"
+}
+exports.handler = async (event, context, callback) =>{
+    if (!event.body || event.httpMethod !== "POST") {
+         callback(null,{
+          statusCode: 400,
+          headers,
+          body: JSON.stringify({
+            status: "invalid http method"
+          })
+        });
+      }
 
-exports.handler = function(event, context, callback) {
     let body = event.body;
     let recaptchaToken=body.recaptchaToken;
     
@@ -46,16 +59,29 @@ exports.handler = function(event, context, callback) {
     if(emailSent.status===200){
         callback(null, {
             statusCode: 200,
-            body: "message successfully sent"
+            headers,
+            body: JSON.stringify({msg:"message successfully sent"})
           });
     }else{
         // email sending error
-        callback("email sending error");
+        callback(null,{
+          statusCode: 400,
+          headers,
+          body: JSON.stringify({
+            status: "email sending error"
+          })
+        });
     }
 
 
  }else{
      // recaptcha check failed
-     callback("recaptcha check failed");
+     callback(null,{
+      statusCode: 400,
+      headers,
+      body: JSON.stringify({
+        status: "recaptcha check failed"
+      })
+    });
  }
 }
