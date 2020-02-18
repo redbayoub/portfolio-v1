@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-12 mx-auto col-md-6">
-          <form @submit.prevent="OnFormSubmited">
+          <form @submit.prevent="submitForm">
             <div class="form-group">
               <label for="name">
                 <span class="text-white">{{$t('contact.form.name')}}</span>
@@ -109,6 +109,7 @@
               ></vue-recaptcha>
               <button
                 type="submit"
+                :disabled="recapToken==null"
                 class="mt-2 btn btn-primary bg-blue-light border-0 text-right capitalize"
               >{{$t('contact.form.send')}}</button>
             </div>
@@ -144,7 +145,7 @@ export default {
     onCaptchaVerified(response) {
       this.recapToken = response;
     },
-    onFormSubmited(e) {
+    submitForm(e) {
       if(this.recapToken==null)return;
       const payload={
         recapToken:this.recapToken,
