@@ -30,18 +30,12 @@
         </div>
 
         <div class="col-12 mx-auto col-md-6">
-          <form name="contact" netlify-honeypot="bot-field" data-netlify="true">
-            <p class="hidden" style="display:none;">
-              <label class="text-light">
-                Don’t fill this out if you're human:
-                <input name="bot-field" />
-              </label>
-            </p>
+          <form action="https://send.pageclip.co/CbfoEu8THHLB8ZdDohlyxjPfGLuSMf5b/contact-form" class="pageclip-form" method="post">
             <div class="form-group">
               <label for="name">
                 <span class="text-white">{{$t('contact.form.name')}}</span>
 
-                <sup style class="text-danger">*</sup>
+                <sup style class="text-danger mx-1">*</sup>
               </label>
               <input
                 type="text"
@@ -49,7 +43,7 @@
                 class="form-control custom-form-input"
                 id="name"
                 autocomplete="off"
-                aria-describedby="emailHelp"
+                minlength="3"
                 :placeholder="$t('contact.form.enter')+' '+$t('contact.form.name')"
                 required
               />
@@ -57,26 +51,39 @@
             <div class="form-group">
               <label for="email">
                 <span class="text-white">{{$t('contact.form.email')}}</span>
-                <sup style class="text-danger">*</sup>
+                <sup style class="text-danger mx-1">*</sup>
               </label>
               <input
                 type="email"
                 name="email"
                 class="form-control custom-form-input"
                 id="email"
-                aria-describedby="emailHelp"
                 :placeholder="$t('contact.form.enter')+' '+$t('contact.form.email')"
+                required
+              />
+            </div><div class="form-group">
+              <label for="subject">
+                <span class="text-white">{{$t('contact.form.subject')}}</span>
+                <sup style class="text-danger mx-1">*</sup>
+              </label>
+              <input
+                type="text"
+                name="subject"
+                class="form-control custom-form-input"
+                id="subject"
+                :placeholder="$t('contact.form.enter')+' '+$t('contact.form.subject')"
                 required
               />
             </div>
             <div class="form-group">
               <label for="message">
                 <span class="text-white">{{$t('contact.form.message')}}</span>
-                <sup class="text-danger">*</sup>
+                <sup class="text-danger mx-1">*</sup>
               </label>
               <textarea
                 class="form-control custom-form-input"
                 autocomplete="off"
+                minlength="3"
                 id="message"
                 name="message"
                 rows="6"
