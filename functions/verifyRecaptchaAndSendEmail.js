@@ -31,13 +31,13 @@ post request :{
   "error-codes": [...]        // optional
 }
 */
-const pageclipApiUrl = "https://api.pageclip.co/api/data/contact-form";
+const pageclipApiUrl = "https://api.pageclip.co/data/contact-form";
 
 // we got this from personal reCaptcha Google Page
 const reCaptchaSecret = process.env.reCaptchaSecret;
 const pageclipKey = process.env.pageclipKey;
 
-exports.handler = async (event, context, callback) => {
+exports.handler = function (event, context, callback) {
   if (!event.body || event.httpMethod !== "POST") {
     callback(null, {
       statusCode: 400,
