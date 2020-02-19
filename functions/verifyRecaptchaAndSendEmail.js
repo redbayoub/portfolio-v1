@@ -61,7 +61,7 @@ exports.handler = async (event, context, callback)=> {
       if (res.success) {
         // recap sucessed
         // send message
-        await axios
+        return axios
           .put(
             pageclipUrl,
             {
