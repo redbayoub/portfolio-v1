@@ -49,7 +49,8 @@ exports.handler = async (event, context, callback) => {
 
   let body = event.body;
   let recaptchaToken = body.recapToken;
-
+  console.log(reCaptchaSecret);
+  console.log(recaptchaToken);
   return axios
     .post(reCapUrl, {
       secret: reCaptchaSecret,
@@ -74,7 +75,8 @@ exports.handler = async (event, context, callback) => {
                 "Content-Type": "application/vnd.pageclip.v1+json"
               },
               auth: {
-                username: btoa(pageclipKey)
+                username: btoa(pageclipKey),
+                password:null,
               }
             }
           )
