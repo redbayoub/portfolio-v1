@@ -39,18 +39,19 @@ const pageclipKey = process.env.pageclipKey;
 
 exports.handler = async (event, context, callback)=> {
   if (!event.body || event.httpMethod !== "POST") {
-    callback(null, {
+    /* callback(null,); */
+    return  {
       statusCode: 400,
       body: JSON.stringify({
         status: "invalid http method"
       })
-    });
+    };
   }
 
   let body = event.body;
   let recaptchaToken = body.recaptchaToken;
 
-  await axios
+  return axios
     .post(reCapUrl, {
       secret: reCaptchaSecret,
       response: recaptchaToken
@@ -81,40 +82,43 @@ exports.handler = async (event, context, callback)=> {
           .then(res => {
             // message sending sucsessed
             console.log(res);
-            callback(null, {
+            /* callback(null,); */
+            return  {
               statusCode: 200,
               body: JSON.stringify({ msg: "message successfully sent" })
-            });
+            };
           })
           .catch(e => {
             console.log(e);
             // message sending error
-            callback(null, {
+            /* callback(null, ); */
+            return {
               statusCode: 400,
               body: JSON.stringify({
                 status: "message sending error"
               })
-            });
+            };
           });
       } else {
         // recaptcha check failed
-        callback(null, {
+        /* callback(null, ); */
+        return {
           statusCode: 400,
-          headers,
           body: JSON.stringify({
             status: "recaptcha check failed"
           })
-        });
+        };
       }
     })
     .catch(e => {
       console.log(e);
-      callback(null, {
+      //recaptcha server failed
+      /* callback(null, ); */
+      return {
         statusCode: 400,
-        headers,
         body: JSON.stringify({
           status: "recaptcha server failed"
         })
-      });
+      };
     });
 };
