@@ -37,7 +37,7 @@ const pageclipApiUrl = "https://api.pageclip.co/data/contact-form";
 const reCaptchaSecret = process.env.reCaptchaSecret;
 const pageclipKey = process.env.pageclipKey;
 
-exports.handler = function (event, context, callback) {
+exports.handler = async (event, context, callback)=> {
   if (!event.body || event.httpMethod !== "POST") {
     callback(null, {
       statusCode: 400,
@@ -60,7 +60,7 @@ exports.handler = function (event, context, callback) {
         // recap sucessed
         // send message
         axios
-          .post(
+          .put(
             pageclipUrl,
             {
               name: body.name,
