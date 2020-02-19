@@ -49,7 +49,7 @@ exports.handler = async (event, context, callback)=> {
   }
 
   let body = event.body;
-  let recaptchaToken = body.recaptchaToken;
+  let recaptchaToken = body.recapToken;
 
   return axios
     .post(reCapUrl, {
