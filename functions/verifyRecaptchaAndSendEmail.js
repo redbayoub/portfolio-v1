@@ -16,68 +16,103 @@ callback
     "body": "..."
 }
  */
-const axios = require('axios');
+const axios = require("axios");
 
 const reCapUrl = "https://www.google.com/recaptcha/api/siteverify";
-const pageclipUrl="https://send.pageclip.co/CbfoEu8THHLB8ZdDohlyxjPfGLuSMf5b/contact-form"
-// we got this from personal reCaptcha Google Page
-const reCaptchaSecret = process.env.reCaptchaSecret; 
+/* 
+post request :{
+  secret,recapToken
+}
+  return 
+  {
+  "success": true|false,
+  "challenge_ts": timestamp,  // timestamp of the challenge load (ISO format yyyy-MM-dd'T'HH:mm:ssZZ)
+  "hostname": string,         // the hostname of the site where the reCAPTCHA was solved
+  "error-codes": [...]        // optional
+}
+*/
+const pageclipApiUrl = "https://api.pageclip.co/api/data/contact-form";
 
-exports.handler = async (event, context, callback) =>{
-    if (!event.body || event.httpMethod !== "POST") {
-         callback(null,{
+// we got this from personal reCaptcha Google Page
+const reCaptchaSecret = process.env.reCaptchaSecret;
+const pageclipKey = process.env.pageclipKey;
+
+exports.handler = async (event, context, callback) => {
+  if (!event.body || event.httpMethod !== "POST") {
+    callback(null, {
+      statusCode: 400,
+      body: JSON.stringify({
+        status: "invalid http method"
+      })
+    });
+  }
+
+  let body = event.body;
+  let recaptchaToken = body.recaptchaToken;
+
+  axios
+    .post(reCapUrl, {
+      secret: reCaptchaSecret,
+      response: recaptchaToken
+    })
+    .then(res => {
+      if (res.success) {
+        // recap sucessed
+        // send message
+        axios
+          .post(
+            pageclipUrl,
+            {
+              name: body.name,
+              email: body.email,
+              subject: body.subject,
+              message: body.message
+            },
+            {
+              headers: {
+                "Content-Type": "application/vnd.pageclip.v1+json"
+              },
+              auth: {
+                username: btoa(pageclipKey)
+              }
+            }
+          )
+          .then(res => {
+            // message sending sucsessed
+            callback(null, {
+              statusCode: 200,
+              body: JSON.stringify({ msg: "message successfully sent" })
+            });
+          })
+          .catch(e => {
+            console.log(e);
+            // message sending error
+            callback(null, {
+              statusCode: 400,
+              body: JSON.stringify({
+                status: "message sending error"
+              })
+            });
+          });
+      } else {
+        // recaptcha check failed
+        callback(null, {
           statusCode: 400,
+          headers,
           body: JSON.stringify({
-            status: "invalid http method"
+            status: "recaptcha check failed"
           })
         });
       }
-
-    let body = event.body;
-    let recaptchaToken=body.recaptchaToken;
-    
-
-    let verifyResult = await axios.post(reCapUrl, {
-        secret: reCaptchaSecret,
-        response: recaptchaToken
+    })
+    .catch(e => {
+      console.log(e);
+      callback(null, {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({
+          status: "recaptcha server failed"
+        })
       });
- if (verifyResult.status === 200) { 
-// send email
-    console.log(body);
-    let emailSent=await axios.post(
-        pageclipUrl,
-        {
-            name:body.name,
-            email:body.email,
-            subject:body.subject,
-            message:body.message,
-        }
-    );
-    console.log(emailSent);
-    if(emailSent.status===200){
-        callback(null, {
-            statusCode: 200,
-            body: JSON.stringify({msg:"message successfully sent"})
-          });
-    }else{
-        // email sending error
-        callback(null,{
-          statusCode: 400,
-          body: JSON.stringify({
-            status: "email sending error"
-          })
-        });
-    }
-
-
- }else{
-     // recaptcha check failed
-     callback(null,{
-      statusCode: 400,
-      headers,
-      body: JSON.stringify({
-        status: "recaptcha check failed"
-      })
     });
- }
-}
+};
