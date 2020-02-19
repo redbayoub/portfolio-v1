@@ -50,7 +50,7 @@ exports.handler = async (event, context, callback)=> {
   let body = event.body;
   let recaptchaToken = body.recaptchaToken;
 
-  axios
+  await axios
     .post(reCapUrl, {
       secret: reCaptchaSecret,
       response: recaptchaToken
@@ -60,7 +60,7 @@ exports.handler = async (event, context, callback)=> {
       if (res.success) {
         // recap sucessed
         // send message
-        axios
+        await axios
           .put(
             pageclipUrl,
             {
