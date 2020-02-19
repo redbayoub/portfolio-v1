@@ -56,6 +56,7 @@ exports.handler = async (event, context, callback)=> {
       response: recaptchaToken
     })
     .then(res => {
+      console.log(res);
       if (res.success) {
         // recap sucessed
         // send message
@@ -79,6 +80,7 @@ exports.handler = async (event, context, callback)=> {
           )
           .then(res => {
             // message sending sucsessed
+            console.log(res);
             callback(null, {
               statusCode: 200,
               body: JSON.stringify({ msg: "message successfully sent" })
