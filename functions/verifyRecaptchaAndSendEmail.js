@@ -37,15 +37,14 @@ const pageclipApiUrl = "https://api.pageclip.co/data/contact-form";
 const reCaptchaSecret = process.env.reCaptchaSecret;
 const pageclipKey = process.env.pageclipKey;
 
-exports.handler = async (event, context, callback)=> {
+exports.handler = async (event, context, callback) => {
   if (!event.body || event.httpMethod !== "POST") {
-    /* callback(null,); */
-    return  {
+    return callback(null, {
       statusCode: 400,
       body: JSON.stringify({
         status: "invalid http method"
       })
-    };
+    });
   }
 
   let body = event.body;
@@ -82,43 +81,40 @@ exports.handler = async (event, context, callback)=> {
           .then(res => {
             // message sending sucsessed
             console.log(res);
-            /* callback(null,); */
-            return  {
+
+            return callback(null, {
               statusCode: 200,
               body: JSON.stringify({ msg: "message successfully sent" })
-            };
+            });
           })
           .catch(e => {
             console.log(e);
             // message sending error
-            /* callback(null, ); */
-            return {
+            return callback(null, {
               statusCode: 400,
               body: JSON.stringify({
                 status: "message sending error"
               })
-            };
+            });
           });
       } else {
         // recaptcha check failed
-        /* callback(null, ); */
-        return {
+        return callback(null, {
           statusCode: 400,
           body: JSON.stringify({
             status: "recaptcha check failed"
           })
-        };
+        });
       }
     })
     .catch(e => {
       console.log(e);
       //recaptcha server failed
-      /* callback(null, ); */
-      return {
+      return callback(null, {
         statusCode: 400,
         body: JSON.stringify({
           status: "recaptcha server failed"
         })
-      };
+      });
     });
 };
