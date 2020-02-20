@@ -65,8 +65,8 @@ exports.handler = async (event, context, callback) => {
       }
     )
     .then(res => {
-      console.log(JSON.parse(res).success);
-      if (res.success) {
+      console.log(res.data.success);
+      if (res.data.success) {
         // recap sucessed
         // send message
         return axios
