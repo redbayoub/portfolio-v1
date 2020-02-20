@@ -150,9 +150,9 @@ export default {
       const payload={
         rt:this.recapToken,
         name:this.name,
-        email:this.name,
-        subject:this.name,
-        message:this.name,
+        email:this.email,
+        subject:this.subject,
+        message:this.message,
       };
       axios
         .post("/.netlify/functions/verifyRecaptchaAndSendEmail", payload)
