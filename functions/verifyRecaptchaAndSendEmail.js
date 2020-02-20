@@ -47,6 +47,22 @@ exports.handler = async (event, context, callback) => {
     });
   }
 
+  let body = event.body;
+  // process the urlencoded body of the form submit and put it in a 
+  // map structure
+  let parts = body.split('&');
+  let result = [];
+  // grab the params 
+  for (let i = 0, len = parts.length; i < len; i++) { 
+     let kVal = parts[i].split('=');
+     // replace the + space then decode
+     let key = decodeURIComponent(kVal[0].replace(/\+/g, ' '));
+     result[key] = decodeURIComponent(kVal[1].replace(/\+/g, ' '));
+  }
+  // its always a good idea to log so that we can inspect the params
+  // later in Amazon Cloudwatch
+  console.log(result);
+
   // IMPORTANT
   // When the method is POST, the name will no longer be in the event’s
   // queryStringParameters – it’ll be in the event body encoded as a query string
