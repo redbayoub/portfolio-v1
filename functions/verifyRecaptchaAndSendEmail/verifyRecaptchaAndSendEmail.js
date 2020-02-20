@@ -18,6 +18,7 @@ callback
 */
 const axios = require("axios");
 const querystring = require("querystring");
+const Pageclip = require("pageclip");
 
 const reCapUrl = "https://www.google.com/recaptcha/api/siteverify";
 /* 
@@ -37,6 +38,7 @@ const pageclipApiUrl = "https://api.pageclip.co/data/contact-form";
 // we got this from personal reCaptcha Google Page
 const reCaptchaSecret = process.env.reCaptchaSecret;
 const pageclipKey = process.env.pageclipKey;
+let pageclip = new Pageclip(pageclipKey);
 
 exports.handler = async (event, context, callback) => {
   if (!event.body || event.httpMethod !== "POST") {
@@ -68,24 +70,13 @@ exports.handler = async (event, context, callback) => {
       if (res.data.success) {
         // recap sucessed
         // send message
-        return axios
-          .put(
-            pageclipApiUrl,
-            {
-              name: body.name,
-              email: body.email,
-              subject: body.subject,
-              message: body.message
-            },
-            {
-              headers: {
-                "Content-Type": "application/vnd.pageclip.v1+json"
-              },
-              auth: {
-                username: btoa(pageclipKey)
-              }
-            }
-          )
+        return pageclip
+          .send({
+            name: body.name,
+            email: body.email,
+            subject: body.subject,
+            message: body.message
+          })
           .then(res => {
             // message sending sucsessed
             console.log(res);
