@@ -17,6 +17,8 @@ callback
 }
 */
 const axios = require("axios");
+const querystring = require("querystring");
+
 const reCapUrl = "https://www.google.com/recaptcha/api/siteverify";
 /* 
 post request :{
@@ -45,18 +47,23 @@ exports.handler = async (event, context, callback) => {
       })
     });
   }
-  let body=JSON.parse(event.body);
-
+  let body = JSON.parse(event.body);
 
   let recaptchaToken = body.recapToken;
-  console.log(body.recapToken);
-  console.log(body.name);
-  console.log(recaptchaToken);
+
   return axios
-    .post(reCapUrl, {
-      secret: reCaptchaSecret,
-      response: recaptchaToken
-    })
+    .post(
+      reCapUrl,
+      querystring.stringify({
+        secret: reCaptchaSecret,
+        response: recaptchaToken
+      }),
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }
+    )
     .then(res => {
       console.log(res);
       if (res.success) {
