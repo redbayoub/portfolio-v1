@@ -47,8 +47,8 @@ exports.handler = async (event, context, callback) => {
     });
   }
 
-  let body = event.body;
-  console.log(body);
+  console.log(JSON.parse(event.body).payload.name);
+  console.log(JSON.parse(event.body).name);
 
   // IMPORTANT
   // When the method is POST, the name will no longer be in the event’s
