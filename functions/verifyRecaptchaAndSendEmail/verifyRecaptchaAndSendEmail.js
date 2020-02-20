@@ -33,7 +33,6 @@ post request :{
   "error-codes": [...]        // optional
 }
 */
-const pageclipApiUrl = "https://api.pageclip.co/data/contact-form";
 
 // we got this from personal reCaptcha Google Page
 const reCaptchaSecret = process.env.reCaptchaSecret;
@@ -71,15 +70,14 @@ exports.handler = async (event, context, callback) => {
         // recap sucessed
         // send message
         return pageclip
-          .send({
+          .send("contact-form",{
             name: body.name,
             email: body.email,
             subject: body.subject,
             message: body.message
           })
           .then(res => {
-            // message sending sucsessed
-            console.log(res);
+            // message sending sucsesse
 
             return callback(null, {
               statusCode: 200,
