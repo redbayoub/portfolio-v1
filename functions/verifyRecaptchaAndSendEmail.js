@@ -16,9 +16,9 @@ callback
     "body": "..."
 }
  */
-const axios = require("axios");
 import querystring from "querystring";
 
+const axios = require("axios");
 const reCapUrl = "https://www.google.com/recaptcha/api/siteverify";
 /* 
 post request :{
@@ -54,7 +54,7 @@ exports.handler = async (event, context, callback) => {
   const params = querystring.parse(event.body);
 
   let recaptchaToken = params.recapToken;
-  console.log( params.rt);
+  console.log( params.recapToken);
   console.log( params.name);
   console.log(recaptchaToken);
   return axios
