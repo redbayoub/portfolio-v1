@@ -48,8 +48,7 @@ exports.handler = async (event, context, callback) => {
   }
 
   let body = event.body;
-  let recaptchaToken = body.recapToken;
-  console.log(body);
+  let recaptchaToken = body['recapToken'];
   console.log(reCaptchaSecret);
   console.log(recaptchaToken);
   return axios
