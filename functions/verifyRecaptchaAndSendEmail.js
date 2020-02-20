@@ -65,7 +65,7 @@ exports.handler = async (event, context, callback) => {
       }
     )
     .then(res => {
-      console.log(res);
+      console.log(res.success);
       if (res.success) {
         // recap sucessed
         // send message
@@ -109,7 +109,7 @@ exports.handler = async (event, context, callback) => {
       } else {
         // recaptcha check failed
         return callback(null, {
-          statusCode: 400,
+          statusCode: 401,
           body: JSON.stringify({
             status: "recaptcha check failed"
           })
@@ -120,7 +120,7 @@ exports.handler = async (event, context, callback) => {
       console.log(e);
       //recaptcha server failed
       return callback(null, {
-        statusCode: 400,
+        statusCode: 402,
         body: JSON.stringify({
           status: "recaptcha server failed"
         })
