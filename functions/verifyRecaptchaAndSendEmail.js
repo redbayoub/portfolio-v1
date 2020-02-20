@@ -47,7 +47,6 @@ exports.handler = async (event, context, callback) => {
     });
   }
 
-  console.log(JSON.parse(event.body).payload.name);
   console.log(JSON.parse(event.body).name);
 
   // IMPORTANT
