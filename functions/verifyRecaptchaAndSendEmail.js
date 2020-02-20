@@ -17,6 +17,7 @@ callback
 }
  */
 const axios = require("axios");
+import querystring from "querystring";
 
 const reCapUrl = "https://www.google.com/recaptcha/api/siteverify";
 /* 
@@ -40,17 +41,21 @@ const pageclipKey = process.env.pageclipKey;
 exports.handler = async (event, context, callback) => {
   if (!event.body || event.httpMethod !== "POST") {
     return callback(null, {
-      statusCode: 400,
+      statusCode: 405,
       body: JSON.stringify({
-        status: "invalid http method"
+        status: "Method Not Allowed"
       })
     });
   }
 
-  let body = event.body;
-  let recaptchaToken = body.rt;
-  console.log( body.rt);
-  console.log( body.name);
+  // IMPORTANT
+  // When the method is POST, the name will no longer be in the event’s
+  // queryStringParameters – it’ll be in the event body encoded as a query string
+  const params = querystring.parse(event.body);
+
+  let recaptchaToken = params.recapToken;
+  console.log( params.rt);
+  console.log( params.name);
   console.log(recaptchaToken);
   return axios
     .post(reCapUrl, {
@@ -66,10 +71,10 @@ exports.handler = async (event, context, callback) => {
           .put(
             pageclipUrl,
             {
-              name: body.name,
-              email: body.email,
-              subject: body.subject,
-              message: body.message
+              name: params.name,
+              email: params.email,
+              subject: params.subject,
+              message: params.message
             },
             {
               headers: {
@@ -77,7 +82,6 @@ exports.handler = async (event, context, callback) => {
               },
               auth: {
                 username: btoa(pageclipKey),
-                password:null,
               }
             }
           )

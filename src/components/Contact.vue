@@ -148,7 +148,7 @@ export default {
     submitForm(e) {
       if(this.recapToken==null)return;
       const payload={
-        rt:this.recapToken,
+        recapToken:this.recapToken,
         name:this.name,
         email:this.email,
         subject:this.subject,
