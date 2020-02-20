@@ -16,8 +16,7 @@ callback
     "body": "..."
 }
  */
-import querystring from "querystring";
-
+const querystring = require("querystring");
 const axios = require("axios");
 const reCapUrl = "https://www.google.com/recaptcha/api/siteverify";
 /* 
@@ -54,8 +53,8 @@ exports.handler = async (event, context, callback) => {
   const params = querystring.parse(event.body);
 
   let recaptchaToken = params.recapToken;
-  console.log( params.recapToken);
-  console.log( params.name);
+  console.log(params.recapToken);
+  console.log(params.name);
   console.log(recaptchaToken);
   return axios
     .post(reCapUrl, {
@@ -81,7 +80,7 @@ exports.handler = async (event, context, callback) => {
                 "Content-Type": "application/vnd.pageclip.v1+json"
               },
               auth: {
-                username: btoa(pageclipKey),
+                username: btoa(pageclipKey)
               }
             }
           )
