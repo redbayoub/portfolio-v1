@@ -15,8 +15,7 @@ callback
     "headers": { "headerName": "headerValue", ... },
     "body": "..."
 }
- */
-const querystring = require("querystring");
+*/
 const axios = require("axios");
 const reCapUrl = "https://www.google.com/recaptcha/api/siteverify";
 /* 
@@ -46,17 +45,12 @@ exports.handler = async (event, context, callback) => {
       })
     });
   }
+  let body=JSON.parse(event.body);
 
-  console.log(JSON.parse(event.body).name);
 
-  // IMPORTANT
-  // When the method is POST, the name will no longer be in the event’s
-  // queryStringParameters – it’ll be in the event body encoded as a query string
-  const params = querystring.parse(event.body);
-  console.log(params);
-  let recaptchaToken = params.recapToken;
-  console.log(params.recapToken);
-  console.log(params.name);
+  let recaptchaToken = body.recapToken;
+  console.log(body.recapToken);
+  console.log(body.name);
   console.log(recaptchaToken);
   return axios
     .post(reCapUrl, {
@@ -72,10 +66,10 @@ exports.handler = async (event, context, callback) => {
           .put(
             pageclipUrl,
             {
-              name: params.name,
-              email: params.email,
-              subject: params.subject,
-              message: params.message
+              name: body.name,
+              email: body.email,
+              subject: body.subject,
+              message: body.message
             },
             {
               headers: {
