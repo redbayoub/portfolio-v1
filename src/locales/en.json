@@ -23,7 +23,10 @@
       "message": "message",
       "name": "name",
       "required": "required",
-      "send": "send"
+      "send": "send",
+      "sending": "Sending ...",
+      "sending_error":"Sorry, I didn't get your message.\n\rPlease try again",
+      "sending_success":"Thank you!, I will get in touch with you soon"
     },
     "label": "contact",
     "title": "get in touch"

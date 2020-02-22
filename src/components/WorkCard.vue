@@ -7,7 +7,7 @@
           <h3 class="card-title text-light">{{title}}</h3>
           <p>
             <span
-              class="badge badge-pill text-light border border-outline-light mr-1"
+              class="badge badge-pill mb-1 text-light border border-outline-light mr-1"
               v-for="(stack,index) in stacks"
               :key="index"
             >{{stack}}</span>

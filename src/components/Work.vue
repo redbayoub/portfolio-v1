@@ -5,7 +5,7 @@
     <div class="row justify-content-center no-gutters capitalize" :class="isRtl">
       <button
         type="button"
-        class="project-type-btn btn capitalize"
+        class="project-type-btn btn capitalize "
         v-bind:class="getBtnColorClass('all')"
         @click="onProjectFilterClicked('all')"
       >{{$t('work.all')}}</button>
@@ -124,6 +124,18 @@ export default {
         },
         {
           id: 5,
+          title_en: "Personal Website",
+          title_ar: "موقعى الشخصي",
+          type: "web",
+          subtitle_en:
+            "The website that your browsing now",
+          subtitle_ar:
+            "الموقع الذي تتصفحه الآن",
+          stacks: ["VueJS", "Bootstrap", "HTML","CSS","JavaScript"],
+          img: "/assets/images/projects/portfolio_ar.jpg",
+        },
+        {
+          id: 6,
           title_en: "Doctor Appointment App",
           title_ar: "تطبيق حجز مواعيد",
           type: "mob",
@@ -177,7 +189,7 @@ export default {
       // selected_project_type == this.project_type
       switch (selected_project_type) {
         case "all":
-          return "btn-primary";
+          return "btn-primary bg-blue-light";
         case "mob":
           return "btn-success";
         case "desk":

@@ -88,7 +88,7 @@ exports.handler = async (event, context, callback) => {
             console.log(e);
             // message sending error
             return callback(null, {
-              statusCode: 400,
+              statusCode: 500,
               body: JSON.stringify({
                 status: "message sending error"
               })
@@ -97,7 +97,7 @@ exports.handler = async (event, context, callback) => {
       } else {
         // recaptcha check failed
         return callback(null, {
-          statusCode: 401,
+          statusCode: 403,
           body: JSON.stringify({
             status: "recaptcha check failed"
           })
@@ -108,9 +108,9 @@ exports.handler = async (event, context, callback) => {
       console.log(e);
       //recaptcha server failed
       return callback(null, {
-        statusCode: 402,
+        statusCode: 500,
         body: JSON.stringify({
-          status: "recaptcha server failed"
+          status: "server error"
         })
       });
     });
