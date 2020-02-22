@@ -70,7 +70,7 @@ exports.handler = async (event, context, callback) => {
         // recap sucessed
         // send message
         return pageclip
-          .send("contact-form",{
+          .send("contact",{
             name: body.name,
             email: body.email,
             subject: body.subject,
