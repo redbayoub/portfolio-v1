@@ -2,11 +2,6 @@ html {
   scroll-behavior: smooth;
 }
 
-pre{
-  font-family: inherit;
-  direction: inherit;
-}
-
 .divder {
   border-radius: 10px;
   background-color: #031e36;

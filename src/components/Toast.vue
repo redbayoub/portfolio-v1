@@ -75,8 +75,12 @@ export default {
 }
 
 .toast pre{
-    color: #fff; /* White text color */
+    color: #fff !important; /* White text color */
+      font-family: inherit !important;
+  direction: inherit !important;
+  font-size: 16px !important;
 }
+
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
 .toast.show {
