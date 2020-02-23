@@ -199,7 +199,6 @@ export default {
       axios
         .post("/.netlify/functions/verifyRecaptchaAndSendEmail", payload)
         .then(function(response) {
-          console.log(response);  
           self.alert = {
             message: self.$t("contact.form.sending_success"),
             type: "success"
@@ -211,7 +210,6 @@ export default {
           self.message = null;
         })
         .catch(function(error) {
-          console.log(error);
           self.alert = {
             message: self.$t("contact.form.sending_error"),
             type: "error"
