@@ -27,7 +27,7 @@
       </div>
       <div class="col-12 col-md-2 text-center">
         <figure>
-          <img class="img-fluid rounded rounded-circle" v-lazy="bayoub_img" alt="Bayoub Reddah" />
+          <img class="img-fluid rounded rounded-circle" src="/assets/images/bayoub_reddah.jpg" alt="Bayoub Reddah" />
           <figcaption class="text-center">{{$t('full-name')}}</figcaption>
         </figure>
       </div>
@@ -38,11 +38,6 @@
 <script>
 export default {
   name: "aboutMe",
-  data() {
-    return {
-      bayoub_img: "/assets/images/bayoub_reddah.jpg"
-    };
-  }
 };
 </script>
 

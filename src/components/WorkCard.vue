@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="card work-card">
-      <img class="card-img img-fluid" v-lazy="img" alt />
+      <img class="card-img img-fluid" :src="img" alt />
       <div class="card-img-overlay d-flex flex-column">
         <div class="work-card-content p-3">
           <h3 class="card-title text-light">{{title}}</h3>
