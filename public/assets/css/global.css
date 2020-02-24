@@ -2,6 +2,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body{
+  margin: 0;
+}
+
 .divder {
   border-radius: 10px;
   background-color: #031e36;

@@ -3,7 +3,7 @@
     <NavBar id="navbar" />
     <Hero id="hero" class="scrollable rtl" ref="hero" />
     <AboutMe class="scrollable rtl" id="about" ref="about" />
-    <Skills class=" scrollable" id="skills" ref="skills" />
+    <Skills class="scrollable" id="skills" ref="skills" />
     <Work class="scrollable" id="work" ref="work" />
     <Contact class="bg-blue-dark scrollable rtl" id="contact" ref="contact" />
     <MyFooter />
@@ -23,44 +23,43 @@ import scrollspy from "@/assets/js/scrollspy.js";
 
 export default {
   name: "home",
-  metaInfo: {
-    title: "بايوب رداح | مطور برامج",
-    // override the parent template and just use the above title only
-    titleTemplate: null,
-    htmlAttrs: {
-      lang: "ar",
-      dir: "rtl",
-      amp: false
-    },
-    meta: [
-      {
-        name: "description",
-        content:
-          "بايوب رداح مطور خبير في تصميم و برمجة تطبقات الموبايل و مواقع الويب و  برامج الحواسيب"
+  metaInfo() {
+    return {
+      title: "بايوب رداح | مطور برامج",
+      // override the parent template and just use the above title only
+      titleTemplate: null,
+      htmlAttrs: {
+        lang: "ar",
+        dir: "rtl",
+        amp: false
       },
-      {
-        name: "keywords",
-        content:
-          "جافا , مواقع , php , java , javascript , php , flutter , andorid , html , ويب , تطبيقات , تطوير , جافاسكريبت , أندرويد , تصميم , فلاتر , برمجة , مطور , مبرمج"
-      }
-    ],
-    link: [
-      {
-        rel: "stylesheet",
-        href: "https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css",
-        integrity:
-          "sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If",
-        crossorigin: "anonymous"
-      },
-      {
-        rel: "stylesheet",
-        href: "/assets/css/global.css"
-      },{
-        rel: "stylesheet",
-        href: "/assets/css/ar.css"
-      },
-
-    ]
+      meta: [
+        {
+          name: "description",
+          content:
+            "بايوب رداح مطور خبير في تصميم و برمجة تطبقات الموبايل و مواقع الويب و  برامج الحواسيب"
+        },
+        {
+          name: "keywords",
+          content:
+            "جافا , مواقع , php , java , javascript , php , flutter , andorid , html , ويب , تطبيقات , تطوير , جافاسكريبت , أندرويد , تصميم , فلاتر , برمجة , مطور , مبرمج"
+        }
+      ],
+      link: [
+        {
+          rel: "stylesheet",
+          href: this.getBootstrapCSSUrl()
+        },
+        {
+          rel: "stylesheet",
+          href: "/assets/css/global.css"
+        },
+        {
+          rel: "stylesheet",
+          href: "/assets/css/ar.css"
+        }
+      ]
+    };
   },
   components: {
     NavBar,
@@ -83,15 +82,14 @@ export default {
     scrollspy(window, menu_links, sections);
   },
   methods: {
-    isRtl: function() {
-      return {
-        rtl: this.$i18n.locale == "ar"
-      };
+    getBootstrapCSSUrl: function() {
+      if (process.env.NODE_ENV == "development")
+        return "https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css";
+      else return "/assets/css/bootstrap-v4-2-1-rtl.css";
     }
   }
 };
 </script>
 
 <style>
-
 </style>
