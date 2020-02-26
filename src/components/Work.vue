@@ -5,7 +5,7 @@
     <div class="row justify-content-center no-gutters capitalize" :class="isRtl">
       <button
         type="button"
-        class="project-type-btn btn capitalize "
+        class="project-type-btn btn capitalize"
         v-bind:class="getBtnColorClass('all')"
         @click="onProjectFilterClicked('all')"
       >{{$t('work.all')}}</button>
@@ -28,9 +28,10 @@
         @click="onProjectFilterClicked('web')"
       >{{$t('work.web')}}</button>
     </div>
-    <transition-group name="list" class="card-row" :class="isCRtl">
+    <div class="card-row" :class="isCRtl">
       <WorkCard
         class="card-col"
+        :class="isDisplayed(project)"
         v-for="project in projects"
         v-bind:key="project.id"
         v-bind:id="project.id"
@@ -41,7 +42,7 @@
         v-bind:source="project.source"
         v-bind:stacks="project.stacks"
       />
-    </transition-group>
+    </div>
   </section>
 </template>
 
@@ -70,7 +71,7 @@ export default {
           subtitle_ar: "طلب خدمات من الأدمين",
           link:
             "https://play.google.com/store/apps/details?id=com.libyataza.otlob_tawa_client",
-          stacks: ["Flutter",'Android', "Firebase"],
+          stacks: ["Flutter", "Android", "Firebase"],
           img: "/assets/images/projects/otlob-tawa.jpg"
         },
         {
@@ -82,7 +83,7 @@ export default {
           subtitle_ar: "أطلب قارورات الغاز من منزلك",
           link:
             "https://play.google.com/store/apps/details?id=com.libyataza.gas_app_client",
-          stacks: ["Flutter",'Android', "Firebase"],
+          stacks: ["Flutter", "Android", "Firebase"],
           img: "/assets/images/projects/gas-order.jpg"
         },
         {
@@ -127,12 +128,10 @@ export default {
           title_en: "Personal Website",
           title_ar: "موقعى الشخصي",
           type: "web",
-          subtitle_en:
-            "The website that your browsing now",
-          subtitle_ar:
-            "الموقع الذي تتصفحه الآن",
-          stacks: ["VueJS", "Bootstrap", "HTML","CSS","JavaScript"],
-          img: "/assets/images/projects/portfolio_ar.jpg",
+          subtitle_en: "The website that your browsing now",
+          subtitle_ar: "الموقع الذي تتصفحه الآن",
+          stacks: ["VueJS", "Bootstrap", "HTML", "CSS", "JavaScript"],
+          img: "/assets/images/projects/portfolio_ar.jpg"
         },
         {
           id: 6,
@@ -143,10 +142,10 @@ export default {
             "App that allows users to take a doctors appointment in 'one click' from their home",
           subtitle_ar:
             "تطبيق لحجز مواعيد لدى الأطباء حيث يمكن للمسخدمين طلب اضافتهم كدكاترة داخل التطبيق كما يمكن لهم الغاء المواعيد",
-          stacks: ["Android", "Java", "Spring Boot","Firebase","MySQL"],
+          stacks: ["Android", "Java", "Spring Boot", "Firebase", "MySQL"],
           source: "https://github.com/redayoub47/doctor_appointment_app",
           img: "/assets/images/projects/doctor.jpg"
-        },
+        }
       ],
       projects: null
     };
@@ -156,7 +155,9 @@ export default {
       return {
         rtl: this.$i18n.locale == "ar"
       };
-    }, // added this to make diff btw rtl ( bootstrap rtl ) and custom rtl
+    },
+
+    // added this to make diff btw rtl ( bootstrap rtl ) and custom rtl
     isCRtl: function() {
       return {
         "c-rtl": this.$i18n.locale == "ar"
@@ -164,6 +165,11 @@ export default {
     }
   },
   methods: {
+    isDisplayed: function(project) {
+      return {
+        hide: this.project_type !== "all" && this.project_type !== project.type
+      };
+    },
     getProjectTitle: function(project) {
       return this.$i18n.locale == "ar" ? project.title_ar : project.title_en;
     },
@@ -174,13 +180,13 @@ export default {
     },
     onProjectFilterClicked(selected_project_type) {
       this.project_type = selected_project_type;
-      if (selected_project_type == "all") {
+      /* if (selected_project_type == "all") {
         this.projects = this.orginal_projects;
       } else {
         this.projects = this.orginal_projects.filter(
           project => project.type == selected_project_type
         );
-      }
+      } */
     },
     getBtnColorClass(selected_project_type) {
       if (selected_project_type != this.project_type) {
@@ -232,6 +238,11 @@ export default {
 .card-col {
   float: left;
   width: 33.33%;
+  display: block;
+}
+
+.card-col.hide{
+  display: none;
 }
 
 .c-rtl .card-col {
