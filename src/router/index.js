@@ -55,6 +55,10 @@ router.beforeEach((to, from, next) => {
       next();
       break;
     }
+    default:{
+      next("/");
+      break;
+    }
   }
 });
 
