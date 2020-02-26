@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "prebuild": "purgecss --css src/assets/css/*.css --content  src/**/*.vue  src/assets/js/*.js --output public/assets/css/ && cd functions/verifyRecaptchaAndSendEmail && npm i",
+    "purgecss":"purgecss --css src/assets/css/*.css --content  src/**/*.vue  src/assets/js/*.js --output public/assets/css/",
+    "prebuild": "cd functions/verifyRecaptchaAndSendEmail && npm i",
     "build": "vue-cli-service build",
     "lambda-build": "netlify-lambda build src/lambda",
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
