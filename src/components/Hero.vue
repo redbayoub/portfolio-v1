@@ -14,9 +14,9 @@
       </div>
     </section>
     <a href="#about" class="arrow-btn">
-      <span></span>
-      <pre></pre>
+      <span></span><pre> </pre>
     </a>
+
   </div>
 </template>
 
