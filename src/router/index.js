@@ -1,8 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import i18n from "../i18n";
-/* const Home = () => import('../views/Home.vue');
-const HomeAr = () => import('../views/HomeAr.vue'); */
 
 
 Vue.use(VueRouter);
@@ -17,7 +15,7 @@ const routes = [
     path: "/en/",
     name: "homeEn",
     component:  function() {
-      return import(/* webpackChunkName: "home" */ "../views/Home.vue");
+      return import(/* webpackChunkName: "homeEn" */ "../views/Home.vue");
     }
   },
   {
@@ -27,17 +25,6 @@ const routes = [
       return import(/* webpackChunkName: "homeAr" */ "../views/HomeAr.vue");
     }
   }
-
-  /* {
-    path: "/ar",
-    name: "ar",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function() {
-      return import(/* webpackChunkName: "home" * / "../views/Home.vue");
-    }
-  } */
 ];
 
 const router = new VueRouter({
