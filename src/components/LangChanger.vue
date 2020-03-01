@@ -17,19 +17,17 @@
       id="langsMenu"
       aria-labelledby="langsBtn"
     >
-      <router-link
+      <a
         class="dropdown-item c-dropdown-item"
         v-bind:class="isActive('en')"
-        to="/en/"
-        replace
-      >English</router-link>
-      <router-link
+        @click.prevent="changeLang('en')"
+      >English</a>
+      <a
         class="dropdown-item c-dropdown-item"
         v-bind:class="isActive('ar')"
-        to="/ar/"
-        replace
+        @click.prevent="changeLang('ar')"
         dir="rtl"
-      >العربية</router-link>
+      >العربية</a>
     </div>
   </div>
 </template>
@@ -67,6 +65,17 @@ export default {
       return {
         selected: this.curr_lang == lang
       };
+    },
+    changeLang(lang) {
+      if (this.curr_lang == lang) return;
+      this.$router.replace("/" + lang + "/", () =>
+        this.trackChangeLanguage(lang)
+      );
+    },
+    trackChangeLanguage(lang) {
+      this.$gtag.event("changeLanguage to "+lang, {
+        event_category: "click"
+      });
     },
     toogleDropedown(e) {
       e.preventDefault();

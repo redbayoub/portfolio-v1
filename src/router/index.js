@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import i18n from "../i18n";
 
-
 Vue.use(VueRouter);
 
 const routes = [
@@ -14,14 +13,14 @@ const routes = [
   {
     path: "/en/",
     name: "homeEn",
-    component:  function() {
+    component: function() {
       return import(/* webpackChunkName: "homeEn" */ "../views/Home.vue");
     }
   },
   {
     path: "/ar/",
     name: "homeAr",
-    component:  function() {
+    component: function() {
       return import(/* webpackChunkName: "homeAr" */ "../views/HomeAr.vue");
     }
   }
@@ -55,11 +54,18 @@ router.beforeEach((to, from, next) => {
       next();
       break;
     }
-    default:{
+    default: {
       next("/");
       break;
     }
   }
+});
+
+router.afterEach((to, from) => {
+  router.app.$gtag.pageview({
+    page_path: to.path,
+    page_title: to.name
+  });
 });
 
 export default router;

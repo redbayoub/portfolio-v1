@@ -8,46 +8,18 @@
       <div class="row justify-content-center">
         <div class="contact-links text-white">
           <a
+            v-for="(contact,index) in otherContacts"
+            :key="index"
             name
             id
             class="btn btn-outline-blue-light"
-            href="mailto:redayoub47@gmail.com"
+            :href="contact.href"
             target="_blank"
             role="button"
+            @click="onContactLinkClicked(contact.type)"
           >
-            <SvgIcon name="email" fill="#ffffff" />
+            <SvgIcon :name="contact.iconName" fill="#ffffff" />
           </a>
-          <a
-            name
-            id
-            class="btn btn-outline-blue-light"
-            href="https://www.facebook.com/redayoub47"
-            target="_blank"
-            role="button"
-          >
-            <SvgIcon name="facebookLogo" fill="#ffffff" />
-          </a>
-          <a
-            name
-            id
-            class="btn btn-outline-blue-light"
-            href="https://www.linkedin.com/in/bayoub-reddah/"
-            target="_blank"
-            role="button"
-          >
-            <SvgIcon name="linkdinLogo" fill="#ffffff" />
-          </a>
-          <a
-            name
-            id
-            class="btn btn-outline-blue-light"
-            href="https://github.com/redayoub47"
-            target="_blank"
-            role="button"
-          >
-            <SvgIcon name="githubLogo" fill="#ffffff" />
-          </a>
-          
         </div>
 
         <div class="col-12 mx-auto col-md-8 col-lg-6">
@@ -169,9 +141,31 @@ export default {
   },
   data() {
     return {
+      otherContacts: [
+        {
+          iconName: "email",
+          type: "email",
+          href: "mailto:redayoub47@gmail.com"
+        },
+        {
+          iconName: "facebookLogo",
+          type: "facebook",
+          href: "https://www.facebook.com/redayoub47"
+        },
+        {
+          iconName: "linkdinLogo",
+          type: "linkdin",
+          href: "https://www.linkedin.com/in/bayoub-reddah/"
+        },
+        {
+          iconName: "githubLogo",
+          type: "github",
+          href: "https://github.com/redayoub47"
+        }
+      ],
       recapToken: null,
       sending: false,
-      alert:null,
+      alert: null,
       name: null,
       email: null,
       subject: null,
@@ -181,6 +175,11 @@ export default {
   methods: {
     onAlertClosed() {
       this.alert = null;
+    },
+    onContactLinkClicked(contactType) {
+      this.$gtag.event("opened " + contactType, {
+        event_category: "open_link"
+      });
     },
     onCaptchaVerified(response) {
       this.recapToken = response;
@@ -208,6 +207,7 @@ export default {
           self.email = null;
           self.subject = null;
           self.message = null;
+          this.trackContactSucceeded();
         })
         .catch(function(error) {
           self.alert = {
@@ -221,6 +221,12 @@ export default {
           // reset captcha
           self.resetCaptcha();
         });
+    },
+    trackContactSucceeded() {
+      this.$gtag.event("contact", {
+        event_label: "contact succeeded",
+        event_category: "click"
+      });
     },
     resetCaptcha() {
       var recaptcha = this.$refs.recaptcha;
@@ -244,7 +250,6 @@ export default {
 .contact-links {
   float: left;
   display: flex;
-
   flex-direction: column;
   justify-content: center;
   border-right: solid 1px rgb(159, 180, 197);
@@ -252,12 +257,12 @@ export default {
 }
 
 .btn-outline-blue-light {
-    border-color: #2d83cf !important;
+  border-color: #2d83cf !important;
 }
-.btn-outline-blue-light:not(:disabled):not(.disabled):active{
+.btn-outline-blue-light:not(:disabled):not(.disabled):active {
   color: #fff !important;
-    background-color: #2d83cf !important;
-    border-color: #2d83cf !important;
+  background-color: #2d83cf !important;
+  border-color: #2d83cf !important;
 }
 
 .rtl .contact-links {
