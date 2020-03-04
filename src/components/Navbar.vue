@@ -5,9 +5,9 @@
     class="navbar fixed-top navbar-expand-md navbar-dark bg-blue capitalize"
   >
     <div class="container-fluid">
-      <a class="navbar-brand m-0" href="#">
+      <a class="navbar-brand m-0" dir="ltr" href="#">
         <Logo class />
-        {{$t('full-name')}}
+        <span class="mr-2">Red Bayoub</span>
       </a>
       <button
         @click.stop="toggleNavbar($event)"
@@ -22,7 +22,12 @@
         <span></span>
       </button>
 
-      <div class="collapse" :class="collapseClasses" id="navbarSupportedContent">
+      <div
+        :dir="[is_mobile ? 'rtl' : 'ltr']"
+        class="collapse"
+        :class="collapseClasses"
+        id="navbarSupportedContent"
+      >
         <ul class="navbar-nav" :class="bindNavNavbarClasses">
           <li class="nav-item menu-link active">
             <a data-page="home" class="nav-link" href="#home">{{$t('home')}}</a>
@@ -86,7 +91,7 @@ export default {
         "bt-menu-open": this.isToogled
       };
     },
-    is_mobile() {
+    is_mobile: function() {
       // media query md 768px
       const isMobile = window.matchMedia("(max-width: 768px)");
       return isMobile.matches ? true : false;
@@ -147,7 +152,6 @@ export default {
   font-size: 30px;
   position: relative;
   display: inline-block;
-  margin-right: 10px;
   width: 1.5em;
   height: 2em;
   cursor: pointer;

@@ -4,7 +4,7 @@
     <div class="d-flex">
       <div class="align-self-center mx-auto">
         <span class="text-white ">{{$t('copyrights')}} </span>
-        <a href="#" class="text-decoration-none text-blue-light">redayoub47</a>
+        <a href="#" class="text-decoration-none text-blue-light">Red Bayoub</a>
       </div>
       <a name id class="btn border-light" href="#hero" role="button">
         <SvgIcon name="angleUpIcon" fill="#ffffff" />

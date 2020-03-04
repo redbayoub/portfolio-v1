@@ -73,7 +73,7 @@ export default {
       );
     },
     trackChangeLanguage(lang) {
-      this.$gtag.event("changeLanguage to "+lang, {
+      this.$gtag.event("changeLanguage to " + lang, {
         event_category: "click"
       });
     },
@@ -171,6 +171,19 @@ export default {
   .custom-dropdown-menu {
     box-shadow: none;
     margin-bottom: 10px;
+  }
+  .rtl .dropdown-toggle::before {
+    display: none;
+  }
+  .rtl .dropdown-toggle::after {
+    display: inline-block;
+    margin-right: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-left: 0.3em solid transparent;
+    border-bottom: 0;
+    border-right: 0.3em solid transparent;
   }
 }
 </style>

@@ -28,7 +28,7 @@
       <div class="col-12 col-md-2 text-center">
         <figure>
           <img class="img-fluid rounded rounded-circle" v-lazy="bayoub_img" alt="Bayoub Reddah" />
-          <figcaption class="text-center">{{$t('full-name')}}</figcaption>
+          <figcaption class="text-center my-2">Red Bayoub</figcaption>
         </figure>
       </div>
     </div>
