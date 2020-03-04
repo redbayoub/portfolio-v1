@@ -145,22 +145,22 @@ export default {
         {
           iconName: "email",
           type: "email",
-          href: "mailto:redayoub47@gmail.com"
+          href: "mailto:contact@redbayoub.com"
         },
         {
           iconName: "facebookLogo",
           type: "facebook",
-          href: "https://www.facebook.com/redayoub47"
+          href: "https://www.facebook.com/redbayoub"
         },
         {
           iconName: "linkdinLogo",
           type: "linkdin",
-          href: "https://www.linkedin.com/in/bayoub-reddah/"
+          href: "https://www.linkedin.com/in/redbayoub/"
         },
         {
           iconName: "githubLogo",
           type: "github",
-          href: "https://github.com/redayoub47"
+          href: "https://github.com/redbayoub"
         }
       ],
       recapToken: null,
