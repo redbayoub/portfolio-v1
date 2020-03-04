@@ -21,11 +21,9 @@ Vue.use(VueGtag, {
   config: { id: "UA-149020396-1" }
 });
 
-
 new Vue({
   i18n,
   router,
-
   render: function(h) {
     return h(App);
   }

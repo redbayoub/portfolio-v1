@@ -24,11 +24,16 @@ import {
   initScrollHandler,
   addScrollCallback
 } from "@/assets/js/scrollhandler.js";
+import {
+  initScrollDepth,
+  updateScrollDepth,
+  getMaxScrollDepth
+} from "@/assets/js/scrolldepth.js";
 export default {
   name: "home",
   metaInfo() {
     return {
-      title: "Bayoub Reddah | Software Developer",
+      title: "Red Bayoub | Software Developer",
       // override the parent template and just use the above title only
       titleTemplate: null,
       htmlAttrs: {
@@ -88,7 +93,15 @@ export default {
     const sections = document.querySelectorAll(".scrollable");
     const menu_links = document.querySelectorAll(".menu-link");
     initScrollHandler(window);
+    initScrollDepth(document, window);
     addScrollCallback(() => scrollspy(window, menu_links, sections));
+    addScrollCallback(() => updateScrollDepth());
+    window.addEventListener("beforeunload", () => {
+      // this is bcoz https://stackoverflow.com/questions/14849201/google-analytics-list-event-values-per-event-label
+      this.$gtag.event(getMaxScrollDepth().toString(), {
+        event_category: "scroll_depth"
+      });
+    });
   },
   methods: {
     getBootstrapCSSUrl: function() {
