@@ -20,6 +20,10 @@ import Work from "@/components/Work";
 import Contact from "@/components/Contact";
 import MyFooter from "@/components/MyFooter";
 import scrollspy from "@/assets/js/scrollspy.js";
+import {
+  initScrollHandler,
+  addScrollCallback
+} from "@/assets/js/scrollhandler.js";
 export default {
   name: "home",
   metaInfo() {
@@ -83,7 +87,8 @@ export default {
   mounted() {
     const sections = document.querySelectorAll(".scrollable");
     const menu_links = document.querySelectorAll(".menu-link");
-    scrollspy(window, menu_links, sections);
+    initScrollHandler(window);
+    addScrollCallback(() => scrollspy(window, menu_links, sections));
   },
   methods: {
     getBootstrapCSSUrl: function() {
