@@ -13,13 +13,13 @@
             >{{stack}}</span>
           </p>
           <p class="card-text text-light">{{subtitle}}</p>
+          
         </div>
-        <div class="container no-gutters mt-auto">
-          <div class="row">
+        <div class="work-btns-wrapper pb-3">
             <a
               name
               id
-              class="btn border-light card-btn col mx-1"
+              class="btn btn-dark border-light card-btn"
               :href="link"
               target="_blank"
               role="button"
@@ -30,7 +30,7 @@
             <a
               name
               id
-              class="btn border-light card-btn col mx-1"
+              class="btn btn-dark border-light card-btn"
               :href="source"
               target="_blank"
               role="button"
@@ -39,7 +39,6 @@
               <SvgIcon name="sourceCode" fill="#ffffff" />
             </a>
           </div>
-        </div>
       </div>
     </div>
   </div>
@@ -82,8 +81,14 @@ export default {
   transform: translate(100000000%); /* only to make out of the frame */
   transition: transform 0s;
 }
-
+.work-btns-wrapper {
+  display: flex;
+  margin: auto 20px 0;
+  align-items: baseline;
+ /*  justify-content: center; */
+}
 .card-btn {
-  margin: auto 0 0;
+  /* margin: auto 0 0; */
+  margin: 0 0 0 10px;
 }
 </style>

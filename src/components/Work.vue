@@ -81,8 +81,7 @@ export default {
           type: "mob",
           subtitle_en: "order gas containers from your home",
           subtitle_ar: "أطلب قارورات الغاز من منزلك",
-          link:
-            "https://play.google.com/store/apps/details?id=com.libyataza.gas_app_client",
+          link: "https://www.facebook.com/gaslibya",
           stacks: ["Flutter", "Android", "Firebase"],
           img: "/assets/images/projects/gas-order.jpg"
         },
@@ -226,7 +225,7 @@ export default {
   display: block;
 }
 
-.card-col.hide{
+.card-col.hide {
   display: none;
 }
 

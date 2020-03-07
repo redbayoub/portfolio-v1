@@ -1,5 +1,5 @@
-const path = require('path')
-const PrerenderSPAPlugin = require('prerender-spa-plugin')
+const path = require("path");
+const PrerenderSPAPlugin = require("prerender-spa-plugin");
 
 module.exports = {
   transpileDependencies: [],
@@ -7,15 +7,25 @@ module.exports = {
     if (process.env.NODE_ENV !== "production") return;
     return {
       plugins: [
-        new PrerenderSPAPlugin(
+        new PrerenderSPAPlugin({
           // Absolute path to compiled SPA
-          path.resolve(__dirname, "dist"),
+          staticDir: path.resolve(__dirname, './dist'),
           // List of routes to prerender
-          ["/ar/","/en/"],
-          {
-            // options
+          routes: [ '/en/', '/ar/' ],
+          // Options
+          postProcess(context) {
+           /*  let titles = {
+              '/': 'My home page',
+              '/about': 'My awesome about page',
+              '/contact': 'Contact me'
+            };
+            context.html = context.html.replace(
+              /<title>[^<]*<\/title>/i,
+              `<title>${titles[context.route]}</title>`
+            ) */
+            return context
           }
-        )
+        }),
       ]
     };
   },

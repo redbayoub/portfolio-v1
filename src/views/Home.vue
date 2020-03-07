@@ -3,7 +3,7 @@
     <NavBar id="navbar" />
     <Hero id="hero" class="scrollable" ref="hero" />
     <AboutMe class="scrollable" id="about" ref="about" />
-    <Skills class="scrollable" id="skills" ref="skills" />
+    <Skills class="scrollable bg-light" id="skills" ref="skills" />
     <Work class="scrollable" id="work" ref="work" />
     <Contact class="bg-blue-dark scrollable" id="contact" ref="contact" />
     <MyFooter />

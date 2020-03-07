@@ -6,7 +6,7 @@
         <div class="divder mx-auto my-4 bg-light"></div>
       </div>
       <div class="row justify-content-center">
-        <div class="contact-links text-white">
+        <div class="contact-links pb-4 mb-4 text-white">
           <a
             v-for="(contact,index) in otherContacts"
             :key="index"
@@ -21,7 +21,9 @@
             <SvgIcon :name="contact.iconName" fill="#ffffff" />
           </a>
         </div>
+      </div>
 
+      <div class="row justify-content-center">
         <div class="col-12 mx-auto col-md-8 col-lg-6">
           <form @submit.prevent="submitForm">
             <div class="form-group">
@@ -85,6 +87,7 @@
                 class="form-control custom-form-input"
                 autocomplete="off"
                 minlength="3"
+                :placeholder="$t('contact.form.enter')+' '+$t('contact.form.message')"
                 v-model="message"
                 :disabled="sending"
                 id="message"
@@ -104,6 +107,7 @@
                 class
                 theme="dark"
                 @verify="onCaptchaVerified"
+                @expired="onCaptchaExpired"
                 ref="recaptcha"
                 sitekey="6Leh6dkUAAAAAL2KFiSuCtfHHCB4ksMSd5nwms6P"
               ></vue-recaptcha>
@@ -181,8 +185,11 @@ export default {
         event_category: "open_link"
       });
     },
-    onCaptchaVerified(response) {
+    onCaptchaExpired(response) {
       this.recapToken = response;
+    },
+    onCaptchaError() {
+      this.resetCaptcha();
     },
     submitForm(e) {
       if (this.recapToken == null) return;
@@ -248,12 +255,11 @@ export default {
   flex-direction: column;
 }
 .contact-links {
-  float: left;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  border-right: solid 1px rgb(159, 180, 197);
   text-transform: lowercase;
+  flex-direction: row;
+  border-bottom: solid 1px white;
 }
 
 .btn-outline-blue-light {
@@ -264,27 +270,8 @@ export default {
   background-color: #2d83cf !important;
   border-color: #2d83cf !important;
 }
-
-.rtl .contact-links {
-  border: none;
-  border-left: solid 1px rgb(159, 180, 197);
-}
 .contact-links a {
   width: 50px;
-  margin: 10px 10px 10px;
-}
-
-@media screen and (max-width: 720px) {
-  .rtl .contact-links {
-    border: none;
-    border-bottom: solid 1px white;
-  }
-  .contact-links {
-    flex-direction: row;
-    border: none;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: solid 1px white;
-  }
+  margin: 0 10px 0;
 }
 </style>
