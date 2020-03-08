@@ -21,11 +21,13 @@
         class="dropdown-item c-dropdown-item"
         v-bind:class="isActive('en')"
         @click.prevent="changeLang('en')"
+        href="/en/"
       >English</a>
       <a
         class="dropdown-item c-dropdown-item"
         v-bind:class="isActive('ar')"
         @click.prevent="changeLang('ar')"
+        href="/ar/"
         dir="rtl"
       >العربية</a>
     </div>
@@ -67,10 +69,12 @@ export default {
       };
     },
     changeLang(lang) {
-      if (this.curr_lang == lang) return;
-      this.$router.replace("/" + lang + "/", () =>
-        this.trackChangeLanguage(lang)
-      );
+      if (this.curr_lang == lang) {
+        console.log("event prvented");
+        return;
+      }
+      this.trackChangeLanguage(lang);
+       location.replace("/" + lang + "/");
     },
     trackChangeLanguage(lang) {
       this.$gtag.event("changeLanguage to " + lang, {

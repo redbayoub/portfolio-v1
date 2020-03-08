@@ -185,10 +185,10 @@ export default {
         event_category: "open_link"
       });
     },
-    onCaptchaExpired(response) {
+    onCaptchaVerified(response) {
       this.recapToken = response;
     },
-    onCaptchaError() {
+    onCaptchaExpired() {
       this.resetCaptcha();
     },
     submitForm(e) {
