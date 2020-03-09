@@ -23,7 +23,7 @@
       </button>
 
       <div
-        :dir="[is_mobile ? 'rtl' : 'ltr']"
+        :dir="[is_mobile && is_rtl ? 'rtl' : 'ltr']"
         class="collapse"
         :class="collapseClasses"
         id="navbarSupportedContent"
@@ -45,7 +45,12 @@
             <a data-page="contact" class="nav-link" href="#contact">{{$t('contact.label')}}</a>
           </li>
 
-          <LangChanger class="nav-item mr-2" style="padding:2px;" id="langChanger" />
+          <LangChanger
+            :dir="[is_rtl&&is_mobile?'rtl':'ltr']"
+            class="nav-item mr-2"
+            style="padding:2px;"
+            id="langChanger"
+          />
           <li class="nav-item">
             <a
               name
@@ -95,6 +100,10 @@ export default {
       // media query md 768px
       const isMobile = window.matchMedia("(max-width: 768px)");
       return isMobile.matches ? true : false;
+    },
+    // added only for lang changer and for navbar nav
+    is_rtl: function() {
+      return this.isRtl();
     }
   },
   data() {
@@ -112,6 +121,7 @@ export default {
 
   methods: {
     isRtl() {
+      console.log("isRtl");
       return this.$i18n.locale === "ar";
     },
     toggleNavbar(e) {
