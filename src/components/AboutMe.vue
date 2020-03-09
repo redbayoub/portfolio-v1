@@ -27,8 +27,7 @@
       </div>
       <div class="col-12 col-md-2 text-center">
         <figure>
-          <img class="img-fluid rounded rounded-circle" v-lazy="bayoub_img" alt="Bayoub Reddah" />
-          <figcaption class="text-center my-2">Red Bayoub</figcaption>
+          <img class="img-fluid rounded rounded-circle" v-lazy="bayoub_img" alt="Red Bayoub Image" />
         </figure>
       </div>
     </div>
@@ -40,7 +39,7 @@ export default {
   name: "aboutMe",
   data() {
     return {
-      bayoub_img: "/assets/images/bayoub_reddah.jpg"
+      bayoub_img: "/assets/images/red_bayoub.jpg"
     };
   }
 };
