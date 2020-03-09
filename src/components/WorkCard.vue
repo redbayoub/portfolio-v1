@@ -87,7 +87,7 @@ export default {
   align-items: baseline;
  /*  justify-content: center; */
 }
-.card-btn {
+.card-btn:nth-of-type(2) {
   /* margin: auto 0 0; */
   margin: 0 0 0 10px;
 }
