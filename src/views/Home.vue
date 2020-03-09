@@ -64,7 +64,7 @@ export default {
         {
           name: "description",
           content:
-            "Bayoub Reddah a freelancer and a software developer with huge experience in developing websites and mobile apps and desktop programs"
+            "Freelance software developer with huge experience in developing websites and mobile apps and desktop programs"
         },
         {
           name: "keywords",
