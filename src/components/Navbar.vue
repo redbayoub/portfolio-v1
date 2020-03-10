@@ -224,9 +224,9 @@ export default {
 }
 
 /* md devices  (desktop, 1024px and up) */
-@media (min-width: 720px) {
+/* @media (min-width: 720px) {
   .navbar .active {
     border-bottom: 2px solid #2d83cf;
   }
-}
+} */
 </style>
