@@ -44,13 +44,9 @@
           <li class="nav-item menu-link">
             <a data-page="contact" class="nav-link" href="#contact">{{$t('contact.label')}}</a>
           </li>
-
-          <LangChanger
-            :dir="[is_rtl&&is_mobile?'rtl':'ltr']"
-            class="nav-item mr-2"
-            style="padding:2px;"
-            id="langChanger"
-          />
+          <li class="nav-item px-3 d-none d-md-block" >
+            <LangChanger id="langChanger" class="nav-link" />
+          </li>
           <li class="nav-item">
             <a
               name

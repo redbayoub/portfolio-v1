@@ -1,8 +1,9 @@
 <template>
   <div>
+    <LangChanger  class="d-md-none" id="mob-lang-changer" />
     <section class="hero container-fluid center-inner-div capitalize" id="hero">
       <div class="container text-center">
-        <h1 class="display-4">{{$t('hero.title')}}</h1>
+        <h1 class="hero-header">{{$t('hero.title')}}</h1>
         <p class="lead">{{$t('hero.lead')}}</p>
         <a
           name
@@ -21,12 +22,29 @@
 </template>
 
 <script scoped>
+import LangChanger from "@/components/LangChanger";
 export default {
-  name: "hero"
+  name: "hero",
+  components: {
+    LangChanger
+  }
 };
 </script>
 
 <style>
+#mob-lang-changer {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  display: inline;
+}
+/* modified font size of bootstrap .display-4  */
+.hero-header {
+  font-size: 3.2rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
 .hero {
   height: 100vh;
 }
