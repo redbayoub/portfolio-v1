@@ -28,6 +28,7 @@
         @click="onProjectFilterClicked('web')"
       >{{$t('work.web')}}</button>
     </div>
+    <div class="mt-2 text-muted text-center">{{$t('work.protip')}}</div>
     <div class="card-row" :class="isCRtl">
       <WorkCard
         class="card-col"
