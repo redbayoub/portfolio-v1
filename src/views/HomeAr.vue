@@ -3,7 +3,7 @@
     <NavBar id="navbar" />
     <Hero id="hero" class="scrollable rtl" ref="hero" />
     <AboutMe class="scrollable rtl" id="about" ref="about" />
-    <Skills class="scrollable  bg-light" id="skills" ref="skills" />
+    <Skills class="scrollable bg-light" id="skills" ref="skills" />
     <Work class="scrollable" id="work" ref="work" />
     <Contact class="bg-blue-dark scrollable rtl" id="contact" ref="contact" />
     <MyFooter />
@@ -59,6 +59,11 @@ export default {
           rel: "stylesheet",
           href: this.getBootstrapCSSUrl()
         },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css?family=Tajawal&display=swap"
+        },
+
         {
           rel: "stylesheet",
           href: "/assets/css/global.css"
