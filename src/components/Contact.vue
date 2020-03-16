@@ -265,6 +265,11 @@ export default {
 .btn-outline-blue-light {
   border-color: #2d83cf !important;
 }
+.btn-outline-blue-light:hover {
+  border-color: #2d83cf !important;
+  background-color: #2d83cf !important;
+  color: #fff !important;
+}
 .btn-outline-blue-light:not(:disabled):not(.disabled):active {
   color: #fff !important;
   background-color: #2d83cf !important;
