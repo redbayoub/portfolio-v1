@@ -75,7 +75,7 @@ export default {
           stacks: ["Flutter", "Android", "Firebase"],
           img: "/assets/images/projects/otlob-tawa.jpg"
         },
-        {
+        /* {
           id: 1,
           title_en: "Gas Libya",
           title_ar: "غاز ليبيا",
@@ -85,7 +85,7 @@ export default {
           link: "https://www.facebook.com/gaslibya",
           stacks: ["Flutter", "Android", "Firebase"],
           img: "/assets/images/projects/gas-order.jpg"
-        },
+        }, */
         {
           id: 2,
           title_en: "Simple Text editor",
@@ -133,7 +133,7 @@ export default {
           stacks: ["VueJS", "Bootstrap", "HTML", "CSS", "JavaScript"],
           img: "/assets/images/projects/portfolio_ar.jpg"
         },
-        {
+        /* {
           id: 6,
           title_en: "Doctor Appointment App",
           title_ar: "تطبيق حجز مواعيد",
@@ -145,7 +145,7 @@ export default {
           stacks: ["Android", "Java", "Spring Boot", "Firebase", "MySQL"],
           source: "https://github.com/redayoub47/doctor_appointment_app",
           img: "/assets/images/projects/doctor.jpg"
-        }
+        } */
       ],
       projects: null
     };
