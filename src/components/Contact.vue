@@ -154,7 +154,7 @@ export default {
         {
           iconName: "facebookLogo",
           type: "facebook",
-          href: "https://www.facebook.com/redbayoub"
+          href: this.getFbPageUrl()
         },
         {
           iconName: "linkdinLogo",
@@ -177,6 +177,10 @@ export default {
     };
   },
   methods: {
+    getFbPageUrl(){
+      if(this.$i18n.locale == "ar")return "https://www.facebook.com/RedBayoubAR"
+      else return "https://www.facebook.com/RedBayoubEN";
+    },
     onAlertClosed() {
       this.alert = null;
     },
