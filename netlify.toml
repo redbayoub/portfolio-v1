@@ -1,6 +1,11 @@
 # The following redirect is intended for use with most SPAs that handle
 # routing internally.
 [[redirects]]
+  from = "/radio"
+  to = "http://82.145.59.200:33802"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
