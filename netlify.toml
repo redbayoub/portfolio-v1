@@ -11,6 +11,7 @@
   [headers.values]
     Access-Control-Allow-Origin = "https://www.redbayoub.com"
   
+[[headers]]
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
