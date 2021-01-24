@@ -11,7 +11,7 @@
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "prerender-spa-plugin": "^3.4.0",
     "vue": "^2.6.10",
     "vue-gtag": "^1.6.2",

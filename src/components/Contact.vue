@@ -2,13 +2,21 @@
   <section class="container-fluid capitalize">
     <div class="container">
       <div class>
-        <h1 class="display-4 text-center text-white">{{$t('contact.title')}}</h1>
+        <h1 class="display-4 text-center text-white">
+          {{ $t("contact.title") }}
+        </h1>
         <div class="divder mx-auto my-4 bg-light"></div>
+      </div>
+      <div class="alert alert-info" role="alert">
+        {{ $t("contact.alert.text") }}
+        <a href="https://www.redbayoub.com/" class="alert-link">{{
+          $t("contact.alert.link_text")
+        }}</a>
       </div>
       <div class="row justify-content-center">
         <div class="contact-links pb-4 mb-4 text-white">
           <a
-            v-for="(contact,index) in otherContacts"
+            v-for="(contact, index) in otherContacts"
             :key="index"
             name
             id
@@ -28,7 +36,7 @@
           <form @submit.prevent="submitForm">
             <div class="form-group">
               <label for="name">
-                <span class="text-white">{{$t('contact.form.name')}}</span>
+                <span class="text-white">{{ $t("contact.form.name") }}</span>
 
                 <sup style class="text-danger mx-1">*</sup>
               </label>
@@ -41,13 +49,15 @@
                 id="name"
                 autocomplete="off"
                 minlength="3"
-                :placeholder="$t('contact.form.enter')+' '+$t('contact.form.name')"
+                :placeholder="
+                  $t('contact.form.enter') + ' ' + $t('contact.form.name')
+                "
                 required
               />
             </div>
             <div class="form-group">
               <label for="email">
-                <span class="text-white">{{$t('contact.form.email')}}</span>
+                <span class="text-white">{{ $t("contact.form.email") }}</span>
                 <sup style class="text-danger mx-1">*</sup>
               </label>
               <input
@@ -57,13 +67,15 @@
                 :disabled="sending"
                 class="form-control custom-form-input"
                 id="email"
-                :placeholder="$t('contact.form.enter')+' '+$t('contact.form.email')"
+                :placeholder="
+                  $t('contact.form.enter') + ' ' + $t('contact.form.email')
+                "
                 required
               />
             </div>
             <div class="form-group">
               <label for="subject">
-                <span class="text-white">{{$t('contact.form.subject')}}</span>
+                <span class="text-white">{{ $t("contact.form.subject") }}</span>
                 <sup style class="text-danger mx-1">*</sup>
               </label>
               <input
@@ -73,21 +85,25 @@
                 :disabled="sending"
                 class="form-control custom-form-input"
                 id="subject"
-                :placeholder="$t('contact.form.enter')+' '+$t('contact.form.subject')"
+                :placeholder="
+                  $t('contact.form.enter') + ' ' + $t('contact.form.subject')
+                "
                 required
                 autocomplete="false"
               />
             </div>
             <div class="form-group">
               <label for="message">
-                <span class="text-white">{{$t('contact.form.message')}}</span>
+                <span class="text-white">{{ $t("contact.form.message") }}</span>
                 <sup class="text-danger mx-1">*</sup>
               </label>
               <textarea
                 class="form-control custom-form-input"
                 autocomplete="off"
                 minlength="3"
-                :placeholder="$t('contact.form.enter')+' '+$t('contact.form.message')"
+                :placeholder="
+                  $t('contact.form.enter') + ' ' + $t('contact.form.message')
+                "
                 v-model="message"
                 :disabled="sending"
                 id="message"
@@ -99,7 +115,7 @@
 
             <small>
               <sup style class="text-danger mx-1">*</sup>
-              <span class="text-white">{{$t('contact.form.required')}}</span>
+              <span class="text-white">{{ $t("contact.form.required") }}</span>
             </small>
 
             <div class="mx-auto mt-2 text-right">
@@ -111,19 +127,29 @@
                 ref="recaptcha"
                 sitekey="6Leh6dkUAAAAAL2KFiSuCtfHHCB4ksMSd5nwms6P"
               ></vue-recaptcha>
-              <CircularProgress v-if="sending" :content="$t('contact.form.sending')" />
+              <CircularProgress
+                v-if="sending"
+                :content="$t('contact.form.sending')"
+              />
               <button
                 v-else
                 type="submit"
-                :disabled="recapToken==null"
+                :disabled="recapToken == null"
                 class="mt-2 btn btn-primary bg-blue-light border-0 text-right capitalize"
-              >{{$t('contact.form.send')}}</button>
+              >
+                {{ $t("contact.form.send") }}
+              </button>
             </div>
           </form>
         </div>
       </div>
     </div>
-    <Toast v-if="alert!=null" :content="alert.message" :type="alert.type" @closed="onAlertClosed" />
+    <Toast
+      v-if="alert != null"
+      :content="alert.message"
+      :type="alert.type"
+      @closed="onAlertClosed"
+    />
   </section>
 </template>
 
@@ -141,7 +167,7 @@ export default {
     CircularProgress,
     Toast,
     VueRecaptcha,
-    MyFooter
+    MyFooter,
   },
   data() {
     return {
@@ -149,23 +175,23 @@ export default {
         {
           iconName: "email",
           type: "email",
-          href: "mailto:contact@redbayoub.com"
+          href: "mailto:contact@redbayoub.com",
         },
         {
           iconName: "facebookLogo",
           type: "facebook",
-          href: this.getFbPageUrl()
+          href: this.getFbPageUrl(),
         },
         {
           iconName: "linkdinLogo",
           type: "linkdin",
-          href: "https://www.linkedin.com/in/redbayoub/"
+          href: "https://www.linkedin.com/in/redbayoub/",
         },
         {
           iconName: "githubLogo",
           type: "github",
-          href: "https://github.com/redbayoub"
-        }
+          href: "https://github.com/redbayoub",
+        },
       ],
       recapToken: null,
       sending: false,
@@ -173,12 +199,13 @@ export default {
       name: null,
       email: null,
       subject: null,
-      message: null
+      message: null,
     };
   },
   methods: {
-    getFbPageUrl(){
-      if(this.$i18n.locale == "ar")return "https://www.facebook.com/RedBayoubAR"
+    getFbPageUrl() {
+      if (this.$i18n.locale == "ar")
+        return "https://www.facebook.com/RedBayoubAR";
       else return "https://www.facebook.com/RedBayoubEN";
     },
     onAlertClosed() {
@@ -186,7 +213,7 @@ export default {
     },
     onContactLinkClicked(contactType) {
       this.$gtag.event("opened " + contactType, {
-        event_category: "open_link"
+        event_category: "open_link",
       });
     },
     onCaptchaVerified(response) {
@@ -202,16 +229,16 @@ export default {
         name: this.name,
         email: this.email,
         subject: this.subject,
-        message: this.message
+        message: this.message,
       };
       const self = this;
       this.sending = false;
       axios
         .post("/.netlify/functions/verifyRecaptchaAndSendEmail", payload)
-        .then(function(response) {
+        .then(function (response) {
           self.alert = {
             message: self.$t("contact.form.sending_success"),
-            type: "success"
+            type: "success",
           };
           // clear inputs
           self.name = null;
@@ -220,10 +247,10 @@ export default {
           self.message = null;
           this.trackContactSucceeded();
         })
-        .catch(function(error) {
+        .catch(function (error) {
           self.alert = {
             message: self.$t("contact.form.sending_error"),
-            type: "error"
+            type: "error",
           };
         })
         .finally(() => {
@@ -236,14 +263,14 @@ export default {
     trackContactSucceeded() {
       this.$gtag.event("contact", {
         event_label: "contact succeeded",
-        event_category: "click"
+        event_category: "click",
       });
     },
     resetCaptcha() {
       var recaptcha = this.$refs.recaptcha;
       recaptcha.reset();
-    }
-  }
+    },
+  },
 };
 </script>
 

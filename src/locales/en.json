@@ -29,7 +29,11 @@
       "sending_success": "Thank you!, I will get in touch with you soon"
     },
     "label": "contact",
-    "title": "get in touch"
+    "title": "get in touch",
+    "alert": {
+      "text": "In order to get in touch please use",
+      "link_text": "the latest version of the website"
+    }
   },
   "copyrights": "designed and developed by",
   "hero": {
